@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="JS/repository/add-delivery-to-van.js" defer></script>
+    <script src="JS/repository/add-order-to-delivery.js" defer></script>
+    <script src="JS/repository/add-product-to-order.js" defer></script>
+    <script src="JS/repository/repository-delete.js" defer></script>
+    <script src="JS/repository/repository-fetch-all.js" defer></script>
+    <script src="JS/repository/repository-fetch.js" defer></script>
+    <script src="JS/repository/repository-patch.js" defer></script>
+    <script src="JS/repository/repository-post.js" defer></script>
+    <script src="JS/repository/repository.js" defer></script>
+    <script src="JS/app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Select Database -->
+    <div class="database-menu-field">
+        <form class="database-menu">
+            <div>
+                <label for="databases">Choose a database</label>
+            </div>
+            <select name="databases" id="databases">
+                <option value="delivery">Deliveries</option>
+                <option value="product">Products</option>
+                <option value="order">Product Orders</option>
+                <option value="van">Vans</option>
+                <br><br>
+                <input type="submit" value="Select"
+                    onclick="updateDatabase(document.getElementById('databases').value);">
+            </select>
+        </form>
+    </div>
+
+    <!-- Deliveries-->
+    <div class="database-field" id="database-delivery" style="display: none;">
+        <header class="database-title">
+            <h3>Deliveries</h3>
+        </header>
+        <div class="database-field-left">
+            <!-- Fetch All -->
+            <div class="fetch-all" id="fetch-all-delivery-table">
+                <table class="table-fetch-all" id="table-fetch-all-delivery"></table>
+            </div>
+
+            <!-- Fetch -->
+            <div class="fetch">
+                <h3>Find Delivery</h3>
+                <input placeholder="delivery id" id="fetch-delivery-id" type="text"></input>
+                <button
+                    onclick="fetchOne('delivery', document.getElementById('fetch-delivery-id').value, 'table-fetch-delivery')">Search</button>
+                <table class="table-fetch" id="table-fetch-delivery"></table>
+
+            </div>
+
+            <!-- Add Orders -->
+            <!-- Preview Orders -->
+            <div class="add-orders">
+                <h3>Add Orders</h3>
+                <div>
+                    <input placeholder="delivery id" id="add-orders-delivery-id" type="text"></input>
+                    <button onclick="activateOrderEditing(document.getElementById('add-orders-delivery-id').value)">Edit
+                        Delivery</button>
+                    <h3>List of Product Orders</h3>
+                    <table class="table-fetch-all" id="table-add-orders-to-delivery"></table>
+                </div>
+                <div>
+                    <input placeholder="product order id" id="add-orders-orders-id"
+                        onchange="previewOrder(document.getElementById('add-orders-orders-id').value)"></input>
+                    <button
+                        onclick="addOrderToDelivery(document.getElementById('add-orders-orders-id').value, document.getElementById('add-orders-delivery-id').value)">
+                        Add To Delivery</button>
+                    <h4> Order Delivery </h4>
+                    <table class="table-fetch" id="table-preview-add-order"></table>
+                </div>
+            </div>
+        </div>
+        <div class="database-field-right">
+            <!-- Post -->
+            <div class="post-field">
+                <form action="localhost:8080/api/v1/delivery" method="POST" id="delivery-post-form">
+                    <h3>Add Delivery</h3>
+                    <div>
+                        <label for="add-delivery-date">Delivery Date</label>
+                        <input type="date" class="delivery-post-input" id="add-delivery-date"
+                            placeholder="Enter Delivery Date">
+                    </div>
+                    <label for="add-delivery-warehouse">Warehouse Origin</label>
+                    <input type="text" class="delivery-post-input" id="delivery-warehouse-input"
+                        placeholder="Enter Warehouse Origin">
+                    <div>
+                        <label for="add-delivery-destination">Destination</label>
+                        <input type="text" class="delivery-post-input" id="delivery-warehouse-input"
+                            placeholder="Enter Destination">
+                    </div>
+                    <div>
+                        <button type="submit" value="submit"
+                            onclick="post('delivery', document.getElementById('delivery-post-id'), document.querySelectorAll('.delivery-post-input'))">Create</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Patch -->
+            <div class="patch-field">
+                <h3>Patch Delivery</h3>
+                <div>
+                    <table id="table-patch-delivery-review"></table>
+                    <label for="patch-delivery-id">Delivery ID:</label>
+                    <input onchange="patchReview('delivery', document.getElementById('patch-delivery-id').value, 'table-patch-delivery-review')"
+                        type="text" id="patch-delivery-id" name="patch-delivery-id" placeholder="delivery id">
+                </div>
+                <div id="patch-delivery-inputs">
+                    <div>
+                        <input type="date" id="patch-delivery-date" value="" placeholder="Date"></input>
+                        <button type="button"
+                            onclick="patch('delivery', 'delivery-date', document.getElementById('patch-delivery-id').value, document.getElementById('patch-delivery-date').value)">Change
+                            Date</button>
+                    </div>
+                    <div></div>
+                    <input id="patch-delivery-warehouse" value="" placeholder="Warehouse"></input>
+                    <button type="button"
+                        onclick="patch('delivery', 'warehouse', document.getElementById('patch-delivery-id').value, document.getElementById('patch-delivery-warehouse'))">Change
+                        Warehouse</button>
+                </div>
+                <div></div>
+
+                <input id="patch-delivery-destination" value="" placeholder="Destination"></input>
+                <button type="button"
+                    onclick="patch('delivery', 'destination', document.getElementById('patch-delivery-id').value, document.getElementById('patch-delivery-destination'))">Change
+                    Destination</button>
+            </div>
+
+            <!-- Delete -->
+            <div class="delete-field">
+                <h3>Delete Delivery</h3>
+                <input placeholder="delivery id" id="delete-delivery-id" type="text"></input>
+                <button
+                    onclick="deleteObject('delivery', document.getElementById('delete-delivery-id').value)">Delete</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Product -->
+    <div class="database-field" id="database-product" style="display: none;">
+        <header class="database-title">
+            <h3>Products</h3>
+        </header>
+        <!-- Fetch All -->
+        <div class="database-field-left">
+            <div class="fetch-all" id="fetch-all-product-table">
+                <table class="table-fetch-all" id="table-fetch-all-product"></table>
+            </div>
+
+            <!-- Fetch -->
+            <div class="fetch">
+                <h3>Find Product</h3>
+                <input id="fetch-product-id" type="text"></input>
+                <button
+                    onclick="fetchOne('product', document.getElementById('fetch-product-id').value, 'table-fetch-product')">Search</button>
+                <table class="table-fetch" id="table-fetch-product"></table>
+            </div>
+
+            <!-- Post -->
+            <div class="post-field">
+                <form action="localhost:8080/api/v1/product" method="POST" id="product-post-form">
+                    <h3>Add Product</h3>
+                    <div>
+                        <div>
+                            <label for="add-product-name">Product name</label>
+                            <input type="name" class="product-post-input" id="add-product-name"
+                                placeholder="Enter Product name">
+                        </div>
+                        <div>
+                            <label for="add-product-price">Price</label>
+                            <input type="text" class="product-post-input" id="product-price-input"
+                                placeholder="Enter Price">
+                        </div>
+                        <div>
+                            <label for="add-product-weight">Weight</label>
+                            <input type="text" class="product-post-input" id="product-price-input"
+                                placeholder="Enter Weight">
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" value="submit"
+                            onclick="post('product', document.getElementById('product-post-id'), document.querySelectorAll('.product-post-input'))">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="database-field-right">
+
+            <!-- Patch -->
+            <div class="patch-field">
+                <h3>Patch Product</h3>
+                <div>
+                    <table id="table-patch-product-review"></table>
+                    <label for="patch-product-id">Product</label>
+                    <input placeholder="product id"
+                        onchange="patchReview('product', document.getElementById('patch-product-id').value, 'table-patch-product-review')"
+                        type="text" id="patch-product-id" name="patch-product-id">
+                    <button onclick="patchReview('product',document.getElementById('patch-product-id').value, 'table-patch-product-review')">Update</button>
+                </div>
+                <div id="patch-product-inputs">
+                    <div>
+                        <input type="name" id="patch-product-name" value="" placeholder="name"></input>
+                        <button type="button"
+                            onclick="patch('product', 'name', document.getElementById('patch-product-id').value, document.getElementById('patch-product-name').value)">Change
+                            name</button>
+                    </div>
+                    <div>
+                        <input type="number" id="patch-product-price" value="" placeholder="Price"></input>
+                        <button type="button"
+                            onclick="patch('product', 'price', document.getElementById('patch-product-id').value, document.getElementById('patch-product-price').value)">Change
+                            Price</button>
+                    </div>
+                    <div>
+                        <input type="number" id="patch-product-weight" value="" placeholder="Weight"></input>
+                        <button type="button"
+                            onclick="patch('product', 'weight', document.getElementById('patch-product-id').value, document.getElementById('patch-product-weight').value)">Change
+                            Weight</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete -->
+            <div class="delete-field">
+                <h3>Delete Product</h3>
+                <input placeholder="product id" id="delete-product-id" type="text"></input>
+                <button
+                    onclick="deleteObject('product', document.getElementById('delete-product-id').value)">Delete</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Order -->
+    <div class="database-field" id="database-order" style="display: none;">
+        <header class="database-title">
+            <h3>Order</h3>
+        </header>
+        <div class="database-field-left">
+            <!-- Fetch All -->
+            <div class="fetch-all" id="fetch-all-order-table">
+                <table class="table-fetch-all" id="table-fetch-all-order"></table>
+            </div>
+
+            <!-- Fetch -->
+            <div class="fetch">
+                <h3>Find Order</h3>
+                <input placeholder="order id" id="fetch-order-id" type="text"></input>
+                <button
+                    onclick="fetchOne('order', document.getElementById('fetch-order-id').value, 'table-fetch-order')">Search</button>
+                <table class="table-fetch" id="table-fetch-order"></table>
+            </div>
+
+            <!-- Post -->
+            <div class="post-field">
+                <form action="localhost:8080/api/v1/order" method="POST" id="order-post-form">
+                    <h3>Add Order</h3>
+                    <div>
+                        <label for="add-order-quantity">Order quantity</label>
+                        <input type="quantity" class="order-post-input" id="add-order-quantity"
+                            placeholder="Enter Order quantity">
+                        <button type="submit" value="submit"
+                            onclick="post('order', document.getElementById('order-post-id'), document.querySelectorAll('.order-post-input'))">Create</button>
+                    </div>
+                    <h3>Add Product To Order</h3>
+                    <div>
+                        <label for="add-order-product-preview-id">Order Product ID</label>
+                        <input type="quantity" class="order-post-input" id="add-order-product-preview-id"
+                            placeholder="Enter Product ID"
+                            onchange="previewAddOrderProduct(document.getElementById('add-order-product-preview-id').value)">
+                        <table class="table-fetch" id="add-order-product-preview"></table>
+                        <button type="submit" value="submit"
+                            onclick="post('order', document.getElementById('order-post-id'), document.querySelectorAll('.order-post-input'))">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="database-field-right">
+            <!-- Patch -->
+            <div class="patch-field">
+                <h3>Patch Order</h3>
+                <div>
+                    <table id="table-patch-order-review"></table>
+                    <label for="patch-order-id">Order</label>
+                    <input placeholder="order id"
+                        onchange="patchReview('order', document.getElementById('patch-order-id').value, 'table-patch-order-review')"
+                        type="text" id="patch-order-id" quantity="patch-order-id">
+                </div>
+                <div id="patch-order-inputs">
+                    <input type="quantity" id="patch-order-quantity" value="" placeholder="quantity"></input>
+                    <button type="button"
+                        onclick="patch('order', 'quantity', document.getElementById('patch-order-id').value, document.getElementById('patch-order-quantity').value)">Change
+                        Quantity</button>
+                </div>
+            </div>
+
+            <!-- Delete -->
+            <div class="delete-field">
+                <h3>Delete Order</h3>
+                <input placeholder="order id" id="delete-order-id" type="text"></input>
+                <button
+                    onclick="deleteObject('order', document.getElementById('delete-order-id').value)">Delete</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Van -->
+    <div class="database-field" id="database-van" style="display: none;">
+        <header class="database-title">
+            <h3>Vans</h3>
+        </header>
+
+        <div class="database-field-left">
+            <!-- Fetch All -->
+            <div class="fetch-all" id="fetch-all-van-table">
+                <table class="table-fetch-all" id="table-fetch-all-van"></table>
+            </div>
+
+            <!-- Fetch -->
+            <div class="fetch">
+                <h3>Find Van</h3>
+                <input placeholder="van id" id="fetch-van-id" type="text"></input>
+                <button 
+                    onclick="fetchOne('van', document.getElementById('fetch-van-id').value, 'table-fetch-van')">Search</button>
+                <table class="table-fetch" id="table-fetch-van"></table>
+            </div>
+
+            <!-- Edit Van deliveries-->
+            <div class="add-orders">
+                <h3>Preview Deliveries</h3>
+                <input placeholder="van id" id="add-delivery-preview-id"
+                    onchange="previewVanDeliveries(document.getElementById('add-delivery-preview-id').value)">
+                    <button onclick="previewVanDeliveries(document.getElementById('add-delivery-preview-id').value)">Update</button>
+                <table class="table-fetch" id="table-add-delivery-preview"></table>
+
+                <!-- Add Delivery -->
+                <h3>Add Delivery to Van</h3>
+                <span>Van ID: </span><input id="add-delivery-van-id"
+                    onchange="previewVanDeliveries(document.getElementById('add-delivery-van-id').value)"
+                    placeholder="Van Id"></input>
+
+                <span>Delivery ID: </span><input id="add-delivery-delivery-id" placeholder="Delivery Id"></input>
+                <button
+                    onclick="addDeliveryToVan(document.getElementById('add-delivery-van-id').value, document.getElementById('add-delivery-delivery-id').value)">Add
+                    Delivery</button>
+            </div>
+        </div>
+
+        <div class="database-field-right">
+            <!-- Post -->
+            <div class="post-field">
+                <form action="localhost:8080/api/v1/van" method="POST" id="van-post-form">
+                    <h3>Add Van</h3>
+                    <div>
+                        <label for="add-van-brand">Van brand</label>
+                        <input type="brand" class="van-post-input" id="add-van-brand" placeholder="Enter Van brand">
+                        <label for="add-van-model">Model</label>
+                        <input type="text" class="van-post-input" id="van-model-input" placeholder="Enter Model">
+                        <label for="add-van-capacity">Capacity</label>
+                        <input type="number" class="van-post-input" id="van-model-input" placeholder="Enter Capacity">
+                    </div>
+                    <div>
+                        <button type="submit" value="submit"
+                            onclick="post('van', document.getElementById('van-post-id'), document.querySelectorAll('.van-post-input'))">Create</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Patch -->
+            <div class="patch-field">
+                <h3>Patch Van</h3>
+                <div>
+                    <table id="table-patch-van-review"></table>
+                    <label for="patch-van-id">Van</label>
+                    <input placeholder="van id"
+                        onchange="patchReview('van', document.getElementById('patch-van-id').value, 'table-patch-van-review')"
+                        type="text" id="patch-van-id" brand="patch-van-id">
+                </div>
+                <div id="patch-van-inputs">
+                    <div>
+                    <input type="brand" id="patch-van-brand" value="" placeholder="brand"></input>
+                    <button type="button"
+                        onclick="patch('van', 'brand', document.getElementById('patch-van-id').value, document.getElementById('patch-van-brand').value)">Change
+                        brand</button>
+                    </div>
+                    <div>   
+                    <input type="number" id="patch-van-model" value="" placeholder="Model"></input>
+                    <button type="button"
+                        onclick="patch('van', 'model', document.getElementById('patch-van-id').value, document.getElementById('patch-van-model').value)">Change
+                        Model</button>
+                    </div>
+                    <div> 
+                    <input type="number" id="patch-van-capacity" value="" placeholder="Capacity"></input>
+                    <button type="button"
+                        onclick="patch('van', 'capacity', document.getElementById('patch-van-id').value, document.getElementById('patch-van-capacity').value)">Change
+                        Capacity</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete -->
+            <div class="delete-field">
+                <h3>Delete Van</h3>
+                <input placeholder="van id" id="delete-van-id" type="text"></input>
+                <button onclick="deleteObject('van', document.getElementById('delete-van-id').value)">Delete</button>
+            </div>
+
+            <!-- View Van Details-->
+            <div class="van-details-field">
+                <h3>View Van Details</h3>
+                <label for="detail-van-id">Van</label>
+                <input placeholder="van id" onchange="vanDetails('van', document.getElementById('patch-van-id').value, 'table-van-detail-id')" 
+                type="text" id="patch-van-id" brand="patch-van-id">
+                <table id="table-van-detail-id"></table>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

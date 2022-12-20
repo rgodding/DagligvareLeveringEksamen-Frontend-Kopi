@@ -1,0 +1,87 @@
+.database-title{
+    text-align: center;
+    margin-top: -5%;
+    font-size: 24px;
+}
+
+.fetch-all{
+    margin-left: 100px;
+    background-color: aquamarine;
+}
+.fetch-all table{
+    margin: auto;
+}
+.fetch{
+    margin-left: 100px;
+    background-color: aquamarine;
+    text-align: center;
+}
+.fetch table{
+    margin: auto;
+}
+
+.add-orders{
+    margin-left: 100px;
+    background-color: aquamarine;
+    text-align: center;
+}
+.add-orders table{
+    margin: auto;
+}
+.post-field{
+    background-color: aquamarine;
+    text-align: center;
+}
+.patch-field{
+    background-color: aquamarine;
+    text-align: center;
+    margin-top: 25px;
+}
+.delete-field{
+    background-color: aquamarine;
+    text-align: center;
+}
+.van-details-field{
+    background-color: aquamarine;
+    text-align: center;
+
+}
+
+.database-field-right{
+    position: relative;
+    float: right;
+    width: 47.5%;
+
+}
+.database-field-left{
+    position: relative;
+    float: left;
+    width: 47.5%;
+}
+
+.database-menu{
+    background-color: aqua;
+    width: fit-content;
+    
+}
+
+.database-field{
+    position: absolute;
+    z-index: 1;
+    width: 75%;
+    background-color: aqua;
+    margin: auto;
+    margin-top: 100px;
+    padding-bottom: 25px;
+    padding-top: 100px;
+}
+
+.database-menu{
+    font-size: 25px;
+    width: 250px;
+    float: right;
+    padding: 10px 50px;
+    text-align: center;
+    margin-right: 25px;
+}
+
