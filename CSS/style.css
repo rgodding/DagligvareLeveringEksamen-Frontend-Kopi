@@ -23,12 +23,6 @@ table td{
     left: 0;
 }
 
-#right-side-content{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
 /* VIEW PRODUCT */
 #view-product-field{
     position: relative;
@@ -162,15 +156,21 @@ table td{
     margin-top: 17.5px;
 }
 
-
+#right-side-content{
+    position: absolute;
+    width: 40%;
+    top: 0;
+    right: 0;
+}
 
 /* PRODUCT TABLE */
 #table-product-list{
+    position: relative;
     margin-right: 50px;
     margin-top: 50px;
     top: 0;
     right: 0;
-    width: 1000px;
+    width: 90%;
     height: 250px;
     padding-top: 15px;
     overflow-y: scroll;
@@ -181,7 +181,7 @@ table td{
     border-bottom-left-radius: 15px;
 }
 #table-product-list p{
-    color: bl;
+    color: black;
     font-weight: bolder;
 }
 #table-product-list td:hover{
@@ -189,15 +189,19 @@ table td{
 }
 
 #product-create-order-field{
+    position: relative;
     background-color: gray;
     margin-right: 50px;
     margin-top: 50px;
-    width: 1000px;
+    width: 90%;
+    height: 250px;
     top: 0;
     right: 0;
     text-align: center;
     border-radius: 15px;
     padding: 15px 15px;
+    overflow-y: scroll;
+    padding: 25px 15px;
 }
 
 .test{
