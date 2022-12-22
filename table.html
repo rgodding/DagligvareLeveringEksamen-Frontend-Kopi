@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABLES</title>
+</head>
+<body onload="start()">
+    <div id="top-nav-bar-div">
+        <ul class="nav container-fluid" id="top-nav-bar">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">DELIVERIES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">PRODUCTS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">PRODUCT ORDERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">VANS</a>
+            </li>
+        </ul>
+    </div>
+    <div id="left-side-content">
+        <!-- VIEW ORDER -->
+        <div id="view-product-field">
+            <div class="row">
+                <div class="col">
+                <p>View product</p>
+                </div>
+            </div>
+            <div class="input-group mb-3" id="view-product-id">
+                <input id="view-product-id-input" type="text" class="form-control" placeholder="Product ID" onchange="fetchProduct(document.getElementById('view-product-id-input').value, 'view-product-preview')">
+                <div class="d-grid col-2">
+                    <button onclick="fetchProduct(document.getElementById('view-product-id-input').value,'view-product-preview')" class="btn-small btn-primary">View</button>
+                </div>
+                <input id="view-product-id-input-name" type="text" class="form-control" placeholder="Product Name" onchange="fetchProductByName(document.getElementById('view-product-id-input-name').value, 'view-product-preview')">
+                <div class="d-grid col-2">
+                    <button onclick="fetchProductByName(document.getElementById('view-product-id-input-name').value,'view-product-preview')" class="btn-small btn-primary">View</button>
+                </div>
+                
+            </div>
+            <table class="table" id="view-product-preview">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">WEIGHT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Product 1</td>
+                        <td>100</td>
+                        <td>25</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- ADD ORDER -->
+        <div id="post-product-form-field">
+            <form id="post-product-form">
+                <p>Add Product</p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">NAME:</span>
+                    <input id="post-product-name-input" type="text" class="form-control" placeholder="Name" maxlength="15">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text">PRICE:</span>
+                    <input id="post-product-price-input" type="number" class="form-control" placeholder="Price" max="15">
+                    <span class="input-group-text">WEIGHT:</span>
+                    <input id="post-product-weight-input" type="number" class="form-control" placeholder="Weight" maxlength="15">
+                </div>
+                <button onclick="postProduct(document.getElementById('post-product-name-input').value, document.getElementById('post-product-price-input').value, document.getElementById('post-product-weight-input').value)" type="button" class="btn btn-primary">Create</button>
+            </form>
+            
+        </div>
+        <!-- EDIT ORDER -->
+        <div id="patch-product-form-field">
+            <form id="patch-product-form">
+                <p>Edit Product</p>
+                <div id="patch-product-preview-field">
+                    <div class="input-group mb-3" id="patch-product-id">
+                        <input id="patch-product-id-input" type="text" class="form-control" placeholder="Product ID">
+                        <div class="d-grid col-2">
+                            <button
+                                onclick="fetchProduct(document.getElementById('patch-product-id-input').value,'patch-product-preview')"
+                                class="btn-small btn-primary">Preview</button>
+                        </div>
+                    </div>
+                    <table class="table" id="patch-product-preview"></table>
+                </div>
+                <div id="patch-product-fields">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">NAME:</span>
+                    <input id="patch-product-name-input" type="text" class="form-control" placeholder="Name">
+                    <div class="d-grid col-2">
+                        <button onclick="patchProduct(document.getElementById('patch-product-id-input').value, 'name', document.getElementById('patch-product-name-input').value)" class="btn-small btn-primary">Submit</button>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">PRICE:</span>
+                    <input id="patch-product-price-input" type="number" class="form-control" placeholder="Price">
+                    <div class="d-grid col-2">
+                        <button onclick="patchProduct(document.getElementById('patch-product-id-input').value, 'price', document.getElementById('patch-product-price-input').value)" class="btn-small btn-primary">Submit</button>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">WEIGHT:</span>
+                    <input id="patch-product-weight-input" type="number" class="form-control" placeholder="Weight">
+                    <div class="d-grid col-2">
+                        <button onclick="patchProduct(document.getElementById('patch-product-id-input').value, 'weight', document.getElementById('patch-product-weight-input').value)" class="btn-small btn-primary">Submit</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- DELETE PRODUCT -->
+        <div id="delete-product-field">
+            <div class="" id="delete-product-content">
+            <p>Delete Product</p>
+            <div class="row">
+            <div id="delete-product-input-field" class="input-group mb-3">
+                <span class="input-group-text">ID:</span>
+                <input id="delete-product-id-input" type="text" class="form-control" placeholder="ID">
+                <div class="d-grid col-2">
+                    <button onclick="deleteProductPreview(document.getElementById('delete-product-id-input').value, 'delete-product-preview')" class="btn-small btn-primary">Preview</button>
+                </div>
+            </div>
+            <div class="col-5" id="delete-product-button">
+                <button onclick="deleteProduct(document.getElementById('delete-product-id-input').value)" class="btn-small btn-primary">Delete</button>
+            </div>
+            </div>
+            <table class="table" id="delete-product-preview">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">WEIGHT</th>
+                    </tr>
+                </thead>
+            </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="right-side-content">
+        <!-- VIEW ALL PRODUCT -->
+        <div class="container items-align-center" id="table-product-list">
+            <div class="row">
+            <div class="col">
+            <p>List of product</p>
+            </div>
+            <div class="col">
+                <button onclick="fetchAllProductListToOrder('product', 'table-fetch-all-product')" class="btn btn-secondary">refresh</button>
+            </div>
+            </div>
+            <table class="table table-hover caption-top" id="table-fetch-all-product">
+            </table>
+        </div>
+        <!-- CREATE ORDER PRODUCT-->
+        <div class="container" id="product-create-order-field">
+            <caption>Product</caption>
+            <div id="view-product-create-order">
+                <div class="input-group mb-3" id="create-order-product-id">
+                    <table id="create-order-product-preview" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">NAME</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">WEIGHT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    </table>
+                    <div id="create-order-product-preview-value">
+                        <div>
+                            <div class="test">
+                                <h4> Price : </h4>
+                                <h4 id="create-order-product-preview-price">0 kr</h4>
+                            </div>
+                            <div class="test">
+                                <h4> Weight: </h4>
+                                <h4 id="create-order-product-preview-weight">0 g</h4>
+                            </div>
+                        </div>
+                        <button onclick="createOrderWithProducts()" class="btn btn-primary">Create Order</button>
+                    </div>
+        
+        
+                </div>
+            </div>
+    </div>
+</body>
+
+<!-- TEST -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<!-- EXTERNAL -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- HTML -->
+<link rel="stylesheet" href="CSS/style.css">
+<!-- JAVASCRIPT -->
+<script src="JS/app.js"></script>
+<script src="JS/product-manager.js"></script>
+<script src="JS/order-management.js"></script>
+<script src="JS/fetch-all.js"></script>
+<script src="JS/fetch.js"></script>
+<script src="JS/link.js"></script>
+<script src="JS/table.js"></script>
+<script src="JS/service.js"></script>
+<script src="JS/post.js"></script>
+<script src="JS/patch.js"></script>
+<script src="JS/delete.js"></script>
+</html>

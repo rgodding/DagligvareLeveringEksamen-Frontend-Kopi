@@ -1,0 +1,209 @@
+body {
+    background-color: darkgray;
+}
+
+table td{
+    max-width: 125px;
+}
+
+/* NAVBAR */
+#top-nav-bar{
+    background-color: rgb(148, 147, 146);
+    position: absolute;
+    z-index: 1;
+}
+#top-nav-bar a{
+    color: black;
+}
+
+/* LEFT SIDE */
+#left-side-content{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#right-side-content{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* VIEW PRODUCT */
+#view-product-field{
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 500px;
+    border-radius: 15px;
+    background-color: gray;
+    text-align: center;
+    padding: 15px 25px;
+}
+
+#view-product-id{
+    margin-left: 50%;
+    margin-right: 50%;
+    transform: translateX(-50%);
+}
+
+#view-product-preview{
+    margin-top: 15px;
+    text-align: center;
+    border: solid 2px;
+}
+
+
+
+/* PRODUCT POST FORM */
+#post-product-form-field{
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: 50px;
+    margin-top: 25px;
+    width: 500px;
+    border-radius: 15px;
+    background-color: gray;
+    text-align: center;
+}
+
+#post-product-form{
+    width: 90%;
+    padding: 15px 15px;
+    margin: auto;
+}
+
+#post-product-form div{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#post-product-form button{
+    margin-left: 50%;
+    margin-right: 50%;
+    transform: translateX(-50%);
+}
+
+/* PRODUCT PATCH FORM */
+#patch-product-form-field{
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: 50px;
+    margin-top: 25px;
+    width: 500px;
+    border-radius: 15px;
+    background-color: gray;
+    text-align: center;
+}
+
+#patch-product-form{
+    width: 90%;
+    padding: 15px 15px;
+    margin: auto;
+}
+
+#patch-product-preview{
+    margin-left: 30px;
+    text-align: center;
+    border: solid 2px;
+    margin-right: 50%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+#patch-product-preview-field{
+    align-items: center;
+}
+
+#patch-product-id{
+    width: 25%;
+    margin-top: 25px;
+    height: fit-content;
+}
+
+#patch-product-fields{
+    margin-top: 15px;
+}
+
+/* PRODUCT DELETE */
+#delete-product-field{
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: 50px;
+    margin-top: 25px;
+    width: 500px;
+    border-radius: 15px;
+    background-color: gray;
+    text-align: center;
+}
+
+#delete-product-content{
+    padding-bottom: 15px;
+}
+
+#delete-product-input-field{
+    width: 30%;
+    padding: 15px 15px;
+    margin-left: 15px;
+}
+
+#delete-product-preview{
+    width: 90%;
+    margin: auto;
+    padding-bottom: 25px;
+}
+
+#delete-product-button{
+    margin-top: 17.5px;
+}
+
+
+
+/* PRODUCT TABLE */
+#table-product-list{
+    margin-right: 50px;
+    margin-top: 50px;
+    top: 0;
+    right: 0;
+    width: 1000px;
+    height: 250px;
+    padding-top: 15px;
+    overflow-y: scroll;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+#table-product-list p{
+    color: bl;
+    font-weight: bolder;
+}
+#table-product-list td:hover{
+    cursor: pointer;
+}
+
+#product-create-order-field{
+    background-color: gray;
+    margin-right: 50px;
+    margin-top: 50px;
+    width: 1000px;
+    top: 0;
+    right: 0;
+    text-align: center;
+    border-radius: 15px;
+    padding: 15px 15px;
+}
+
+.test{
+    margin-top: 15px;
+}
+
+.test h4{
+    display: inline-block;
+}
