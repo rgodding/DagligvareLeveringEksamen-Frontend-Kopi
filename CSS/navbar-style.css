@@ -1,0 +1,7 @@
+#nav-tab a{
+    color: black;
+}
+
+#nav-tab a:hover{
+    background-color: rgb(239, 239, 239);
+}

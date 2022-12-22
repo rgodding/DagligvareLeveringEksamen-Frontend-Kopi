@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATE TAB</title>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-link" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" area-selected="true">Home</a>
+        <a class="nav-link" id="nav-delivery-tab" data-bs-toggle="tab" href="#nav-delivery" role="tab" aria-controls="nav-delivery" area-selected="false">Deliveries</a>
+        <a class="nav-link active" id="nav-product-tab" data-bs-toggle="tab" href="#nav-product" role="tab" aria-controls="nav-product" area-selected="false">Products</a>
+        <a class="nav-link" id="nav-order-tab" data-bs-toggle="tab" href="#nav-order" role="tab" aria-controls="nav-order" area-selected="false">Orders</a>
+        <a class="nav-link" id="nav-van-tab" data-bs-toggle="tab" href="#nav-van" role="tab" aria-controls="nav-van" area-selected="false">Vans</a>
+    </nav>
+
+    <!-- PAGE BODY -->
+    <div class="tab-content" id="nav-tabContent">
+        <!-- HOME BODY -->
+        <div class="tab-pane fade" id="nav-home" role="tab-panel" aria-labelledby="nav-home-tab">
+            <h3>HOME</h3>
+        </div>
+        <!-- DELIVERY BODY -->
+        <div class="tab-pane fade" id="nav-delivery" role="tab-panel" aria-labelledby="nav-delivery-tab">
+            <h3>DELIVERY PAGE</h3>
+        </div>
+        <!-- PRODUCT BODY -->
+        <div class="container-fluid tab-pane fade show active" id="nav-product" role="tab-panel" aria-labelledby="nav-product-tab">
+            <h3>PRODUCT PAGE</h3>
+            <!-- PRODUCT NAVBAR -->
+            <nav class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
+                <a class="nav-link" id="nav-product-find-tab" data-bs-toggle="tab" href="#nav-product-find" role="tab" aria-controls="nav-product-find" area-selected="false">Find Product</a>
+                <a class="nav-link" id="nav-product-edit-tab" data-bs-toggle="tab" href="#nav-product-edit" role="tab" aria-controls="nav-product-edit" area-selected="false">Edit Product</a>
+                <a class="nav-link" id="nav-product-create-tab" data-bs-toggle="tab" href="#nav-product-create" role="tab" aria-controls="nav-product-create" area-selected="false">Create Product</a>
+                <a class="nav-link" id="nav-product-delete-tab" data-bs-toggle="tab" href="#nav-product-delete" role="tab" aria-controls="nav-product-delete" area-selected="false">Delete Product</a>
+            </nav>
+            <!-- PRODUCT INNER BODY -->
+            <div class="tab-content" id="nav-tabContent-product">
+                <!-- CREATE ORDER -->
+                <div id="product-create-order">
+                    <caption>CREATE ORDER</caption>
+                    <div id="product-create-order-table-field">
+                    <table class="table" id="product-create-order-table">
+                        <thead>
+                            <tr>
+                                <th id="product-create-order-table-id-head">ID</th>
+                                <th id="product-create-order-table-name-head">NAME</th>
+                                <th id="product-create-order-table-price-head">PRICE</th>
+                                <th id="product-create-order-table-weight-head">WEIGHT</th>
+                                <th id="product-create-order-table-quantity-head">QUANTITY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Product 1</td>
+                                <td>10000 kr</td>
+                                <td>100 g</td>
+                                <td><input type="number" class="product-create-order-table-quantity-input"></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Product 2</td>
+                                <td>10000 kr</td>
+                                <td>100 g</td>
+                                <td><input type="number" class="product-create-order-table-quantity-input"></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Product 3</td>
+                                <td>10000 kr</td>
+                                <td>100 g</td>
+                                <td><input type="number" class="product-create-order-table-quantity-input"></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Product 4</td>
+                                <td>10000 kr</td>
+                                <td>100 g</td>
+                                <td><input type="number" class="product-create-order-table-quantity-input"></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Product 5</td>
+                                <td>10000 kr</td>
+                                <td>100 g</td>
+                                <td><input type="number" class="product-create-order-table-quantity-input"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    <button class="btn btn-primary">Create Order</button>
+                </div>
+                <!-- VIEW ALL -->
+                <div class="tab-pane fade show active" id="nav-product-view-all" role="tab-panel" aria-labelledby="nav-product-view-all-tab">
+                    <h3>View All Products</h3>
+                    <div class="container" id="view-all-product">
+                        <table class="table" id="view-all-product-table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>NAME</td>
+                                    <td>PRICE</td>
+                                    <td>WEIGHT</td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>NAME</td>
+                                    <td>PRICE</td>
+                                    <td>WEIGHT</td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>NAME</td>
+                                    <td>PRICE</td>
+                                    <td>WEIGHT</td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>NAME</td>
+                                    <td>PRICE</td>
+                                    <td>WEIGHT</td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>NAME</td>
+                                    <td>PRICE</td>
+                                    <td>WEIGHT</td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>NAME</td>
+                                    <td>PRICE</td>
+                                    <td>WEIGHT</td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>NAME</td>
+                                    <td>PRICE</td>
+                                    <td>WEIGHT</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- FIND -->
+                <div class="tab-pane fade" id="nav-product-find" role="tab-panel" aria-labelledby="nav-product-find-tab">
+                    <h3>Find Product</h3>
+                </div>
+                <!-- EDIT -->
+                <div class="tab-pane fade" id="nav-product-edit" role="tab-panel" aria-labelledby="nav-product-edit-tab">
+                    <h3>Edit Product</h3>
+                </div>
+                <!-- CREATE -->
+                <div class="tab-pane fade" id="nav-product-create" role="tab-panel" aria-labelledby="nav-product-create-tab">
+                    <h3>Create Product</h3>
+                </div>
+                <!-- DELETE -->
+                <div class="tab-pane fade" id="nav-product-delete" role="tab-panel" aria-labelledby="nav-product-delete-tab">
+                    <h3>Delete Product</h3>
+                </div>
+            </div>
+    
+        </div>
+        <!-- ORDER BODY -->
+        <div class="tab-pane fade" id="nav-order" role="tab-panel" aria-labelledby="nav-order-tab">
+            <h3>ORDER PAGE</h3>
+        </div>
+        <!-- VAN BODY-->
+        <div class="tab-pane fade" id="nav-van" role="tab-panel" aria-labelledby="nav-van-tab">
+            <h3>VAN PAGE</h3>
+        </div>
+
+    </div>
+
+
+    
+</body>
+<!-- TEST -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<!-- EXTERNAL -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+<!-- HTML -->
+<link rel="stylesheet" href="CSS/style.css">
+<link rel="stylesheet" href="CSS/navbar-style.css">
+<link rel="stylesheet" href="CSS/product-page.css">
+<!-- JAVASCRIPT -->
+</html>
