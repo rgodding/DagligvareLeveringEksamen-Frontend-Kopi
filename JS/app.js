@@ -22,10 +22,6 @@ function postObject(){}
 function deleteObject(){}
 
 
-function addProductToOrderList(id){
-  console.log('adding order test - id(' + id + ')')
-}
-
 function getLink(type){
   switch(type){
     case "delivery":
