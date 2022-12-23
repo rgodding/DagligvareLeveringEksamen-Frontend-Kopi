@@ -22,6 +22,52 @@
 }
 
 
+
+/* PATCH PRODUCT*/
+#patch-product-form{
+    width: 40%;
+    padding: 25px;
+    background-color: bisque;
+}
+#patch-product-preview-field{
+    margin-left: 0px;
+    margin-top: 25px;
+    background-color: antiquewhite;
+    width: 40%;
+    text-align: center;
+}
+#patch-product th{
+    width: 25%;
+}
+#patch-product td{
+    font-family: sans-serif;
+}
+
+/* ADD PRODUCT */
+#add-product-form-container{
+    background-color: antiquewhite;
+    width: 30%;
+    padding: 25px;
+    margin-top: 25px;
+    margin-left: 0px;
+}
+
+/* DELETE PRODUCT */
+#delete-product-field{
+    background-color: antiquewhite;
+    width: 40%;
+    margin-top: 25px;
+    padding: 25px;
+}
+
+
+
+
+
+
+
+
+
 /* Create Order on Product Page */
 #product-create-order{
     position: absolute;
@@ -34,7 +80,6 @@
     border: solid 1px;
     background-color: rgb(234, 234, 234);
 }
-
 #product-create-order-table-field{
     width: fit-content;
 }
