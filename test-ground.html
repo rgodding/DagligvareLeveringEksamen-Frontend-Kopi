@@ -33,20 +33,31 @@
             <h3>PRODUCT PAGE</h3>
             <!-- PRODUCT NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-link" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="false">View All</a>
+                <a class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
                 <a class="nav-link" id="nav-product-edit-tab" data-bs-toggle="tab" href="#nav-product-edit" role="tab" aria-controls="nav-product-edit" area-selected="false">Edit Product</a>
-                <a class="nav-link active" id="nav-product-create-tab" data-bs-toggle="tab" href="#nav-product-create" role="tab" aria-controls="nav-product-create" area-selected="true">Create Product</a>
+                <a class="nav-link" id="nav-product-create-tab" data-bs-toggle="tab" href="#nav-product-create" role="tab" aria-controls="nav-product-create" area-selected="false">Create Product</a>
                 <a class="nav-link" id="nav-product-delete-tab" data-bs-toggle="tab" href="#nav-product-delete" role="tab" aria-controls="nav-product-delete" area-selected="false">Delete Product</a>
             </nav>
             <!-- PRODUCT INNER BODY -->
             <div class="tab-content" id="nav-tabContent-product">
                 <!-- CREATE ORDER -->
                 <!-- VIEW ALL -->
-                <div class="tab-pane fade" id="nav-product-view-all" role="tab-panel"
-                    aria-labelledby="nav-product-view-all-tab">
-                    <h3>View All Products</h3>
-                    <input id="find-product-id-input" placeholder="Product Name"></input>
+                <div class="tab-pane fade show active" id="nav-product-view-all" role="tab-panel"
+                    aria-labelledby="nav-product-view-all-tab">   
                     <div class="container" id="view-all-product">
+                        <h3>View All Products</h3>
+                        <div class="row">
+                        <div class="input-group col">
+                            <span class="input-group-text">Product ID:</span>
+                            <input type="text" class="form-control" placeholder="id" aria-label="add-product-name">
+                            <button>Preview</button>
+                        </div>
+                        <div class="input-group col">
+                            <span class="input-group-text">Product ID:</span>
+                            <input type="text" class="form-control" placeholder="id" aria-label="add-product-name">
+                            <button>Preview</button>
+                        </div>
+                        </div>
                         <table class="table table-hover" id="view-all-product-table">
                             <thead>
                                 <tr>
@@ -159,8 +170,7 @@
                 </div>
                 </div>
                 <!-- EDIT -->
-                <div class="tab-pane fade show active" id="nav-product-edit" role="tab-panel" aria-labelledby="nav-product-edit-tab">
-                    <h3>Edit Product</h3>
+                <div class="tab-pane fade" id="nav-product-edit" role="tab-panel" aria-labelledby="nav-product-edit-tab">
                     <!-- EDIT PRODUCT FORM -->
                     <form id="patch-product-form">
                         <p class="h5">Edit Product</p>

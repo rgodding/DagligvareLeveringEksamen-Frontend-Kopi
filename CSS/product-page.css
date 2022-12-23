@@ -7,10 +7,16 @@
     width: fit-content;
     border: solid 1px;
 }
+
+/* VIEW ALL PRODUCT */
 #view-all-product{
     margin-left: 0px;
+    margin-top: 25px;
+    padding: 25px;
     background-color: bisque;
     width: 40%;
+}
+#view-all-product-table{
     text-align: center;
 }
 #view-all-product th{
@@ -22,9 +28,9 @@
 }
 
 
-
 /* PATCH PRODUCT*/
 #patch-product-form{
+    margin-top: 25px;
     width: 40%;
     padding: 25px;
     background-color: bisque;

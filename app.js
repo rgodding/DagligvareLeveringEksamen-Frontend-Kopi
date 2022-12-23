@@ -1,7 +1,26 @@
-function testValue(){
-    console.log('test value')
-    document.getElementById('add-product-name-id').value = '123'
-}
+// VIEW ALL PRODUCT
+
+// EDIT PRODUCT
+// CREATE PRODUCT
+// DELETE PRODUCT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 document.getElementById('patch-product-form').addEventListener("click", function(event){
