@@ -33,7 +33,7 @@
             <h3>PRODUCT PAGE</h3>
             <!-- PRODUCT NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
+                <a onclick="getAllObject('product', 'view-all-product-table')" class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
                 <a class="nav-link" id="nav-product-edit-tab" data-bs-toggle="tab" href="#nav-product-edit" role="tab" aria-controls="nav-product-edit" area-selected="false">Edit Product</a>
                 <a class="nav-link" id="nav-product-create-tab" data-bs-toggle="tab" href="#nav-product-create" role="tab" aria-controls="nav-product-create" area-selected="false">Create Product</a>
                 <a class="nav-link" id="nav-product-delete-tab" data-bs-toggle="tab" href="#nav-product-delete" role="tab" aria-controls="nav-product-delete" area-selected="false">Delete Product</a>
@@ -42,77 +42,27 @@
             <div class="tab-content" id="nav-tabContent-product">
                 <!-- CREATE ORDER -->
                 <!-- VIEW ALL -->
-                <div class="tab-pane fade" id="nav-product-view-all" role="tab-panel"
+                <div class="tab-pane fade show active" id="nav-product-view-all" role="tab-panel"
                     aria-labelledby="nav-product-view-all-tab">   
                     <div class="container" id="view-all-product">
                         <h3>View All Products</h3>
                         <div class="row">
                         <div class="input-group col">
-                            <span class="input-group-text">Product ID:</span>
-                            <input id="product-view-all-find-id-input" type="text" class="form-control" placeholder="id" aria-label="find-product-id">
-                            <button>Preview</button>
+                            <span class="input-group-text">ID:</span>
+                            <input id="product-view-all-find-id-input" type="number" class="form-control" placeholder="id" aria-label="find-product-id">
+                            <button onclick="getObjectById('product', document.getElementById('product-view-all-find-id-input').value, 'view-all-product-table')" style="font-size: 12px;">Preview</button>
                         </div>
                         <div class="input-group col">
                             <span class="input-group-text">Name:</span>
                             <input id="product-view-all-find-name-input" type="text" class="form-control" placeholder="name" aria-label="find-product-name">
-                            <button>Preview</button>
+                            <button onclick="getObjectByName('product', document.getElementById('product-view-all-find-name-input').value, 'view-all-product-table')" style="font-size: 12px;">Preview</button>
+                        </div>
+                        <div class="input-group col">
+                            <button onclick="getAllObject('product', 'view-all-product-table')">REFRESH</button>
                         </div>
                         </div>
                         <!-- VIEW ALL PRODUCT TABLE -->
-                        <table class="table table-hover" id="view-all-product-table">
-                            <thead>
-                                <tr>
-                                    <th class="product-table-head-id">ID</th>
-                                    <th class="product-table-head-name">NAME</th>
-                                    <th class="product-table-head-price">PRICE</th>
-                                    <th class="product-table-head-weight">WEIGHT</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>NAME</td>
-                                    <td>PRICE</td>
-                                    <td>WEIGHT</td>
-                                </tr>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>NAME</td>
-                                    <td>PRICE</td>
-                                    <td>WEIGHT</td>
-                                </tr>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>NAME</td>
-                                    <td>PRICE</td>
-                                    <td>WEIGHT</td>
-                                </tr>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>NAME</td>
-                                    <td>PRICE</td>
-                                    <td>WEIGHT</td>
-                                </tr>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>NAME</td>
-                                    <td>PRICE</td>
-                                    <td>WEIGHT</td>
-                                </tr>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>NAME</td>
-                                    <td>PRICE</td>
-                                    <td>WEIGHT</td>
-                                </tr>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>NAME</td>
-                                    <td>PRICE</td>
-                                    <td>WEIGHT</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <table class="table table-hover" id="view-all-product-table"></table>
                     </div>
                 <!-- CREATE ORDER -->
                 <div id="product-create-order">
@@ -129,42 +79,7 @@
                                     <th id="product-create-order-table-quantity-head">QUANTITY</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>10000 kr</td>
-                                    <td>100 g</td>
-                                    <td><input type="number" class="product-create-order-table-quantity-input"></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Product 2</td>
-                                    <td>10000 kr</td>
-                                    <td>100 g</td>
-                                    <td><input type="number" class="product-create-order-table-quantity-input"></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Product 3</td>
-                                    <td>10000 kr</td>
-                                    <td>100 g</td>
-                                    <td><input type="number" class="product-create-order-table-quantity-input"></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Product 4</td>
-                                    <td>10000 kr</td>
-                                    <td>100 g</td>
-                                    <td><input type="number" class="product-create-order-table-quantity-input"></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Product 5</td>
-                                    <td>10000 kr</td>
-                                    <td>100 g</td>
-                                    <td><input type="number" class="product-create-order-table-quantity-input"></td>
-                                </tr>
+                            <tbody id="product-create-order-table-body">
                             </tbody>
                         </table>
                     </div>
@@ -172,11 +87,10 @@
                 </div>
                 </div>
                 <!-- EDIT -->
-                <div class="tab-pane fade show active" id="nav-product-edit" role="tab-panel" aria-labelledby="nav-product-edit-tab">
+                <div class="tab-pane fade" id="nav-product-edit" role="tab-panel" aria-labelledby="nav-product-edit-tab">
                     <!-- EDIT PRODUCT FORM -->
                     <form id="patch-product-form">
                         <h5>Edit Product</h5>
-                        <!-- PRODUCT NAME -->
                         <div class="input-group mb-3" style="width: 35%;">
                             <span class="input-group-text">ID:</span>
                             <input id="patch-product-id-input" type="number" class="form-control" placeholder="id" aria-label="patch-product-id">
@@ -308,5 +222,8 @@
 <link rel="stylesheet" href="CSS/product-page.css">
 <link rel="stylesheet" href="CSS/product-table.css">
 <!-- JAVASCRIPT -->
-<script src="app.js"></script>
+<script src="JS/app.js"></script>
+<script src="JS/table.js"></script>
+<script src="JS/repository.js"></script>
+<script src="JS/product-repository.js"></script>
 </html>
