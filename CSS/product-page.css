@@ -42,11 +42,8 @@
     width: 40%;
     text-align: center;
 }
-#patch-product th{
-    width: 25%;
-}
-#patch-product td{
-    font-family: sans-serif;
+#patch-product-preview-table th{
+    border: solid 1px;
 }
 
 /* ADD PRODUCT */
@@ -64,6 +61,10 @@
     width: 40%;
     margin-top: 25px;
     padding: 25px;
+}
+
+#patch-product-preview-table{
+    text-align: center;
 }
 
 

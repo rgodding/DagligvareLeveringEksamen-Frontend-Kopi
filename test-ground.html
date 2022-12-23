@@ -42,29 +42,30 @@
             <div class="tab-content" id="nav-tabContent-product">
                 <!-- CREATE ORDER -->
                 <!-- VIEW ALL -->
-                <div class="tab-pane fade show active" id="nav-product-view-all" role="tab-panel"
+                <div class="tab-pane fade" id="nav-product-view-all" role="tab-panel"
                     aria-labelledby="nav-product-view-all-tab">   
                     <div class="container" id="view-all-product">
                         <h3>View All Products</h3>
                         <div class="row">
                         <div class="input-group col">
                             <span class="input-group-text">Product ID:</span>
-                            <input type="text" class="form-control" placeholder="id" aria-label="add-product-name">
+                            <input id="product-view-all-find-id-input" type="text" class="form-control" placeholder="id" aria-label="find-product-id">
                             <button>Preview</button>
                         </div>
                         <div class="input-group col">
-                            <span class="input-group-text">Product ID:</span>
-                            <input type="text" class="form-control" placeholder="id" aria-label="add-product-name">
+                            <span class="input-group-text">Name:</span>
+                            <input id="product-view-all-find-name-input" type="text" class="form-control" placeholder="name" aria-label="find-product-name">
                             <button>Preview</button>
                         </div>
                         </div>
+                        <!-- VIEW ALL PRODUCT TABLE -->
                         <table class="table table-hover" id="view-all-product-table">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Weight</th>
+                                    <th class="product-table-head-id">ID</th>
+                                    <th class="product-table-head-name">NAME</th>
+                                    <th class="product-table-head-price">PRICE</th>
+                                    <th class="product-table-head-weight">WEIGHT</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,6 +118,7 @@
                 <div id="product-create-order">
                     <caption>CREATE ORDER</caption>
                     <div id="product-create-order-table-field">
+                        <!-- TEMPORARY PRODUCT LIST FOR ORDER -->
                         <table class="table" id="product-create-order-table">
                             <thead>
                                 <tr>
@@ -170,26 +172,32 @@
                 </div>
                 </div>
                 <!-- EDIT -->
-                <div class="tab-pane fade" id="nav-product-edit" role="tab-panel" aria-labelledby="nav-product-edit-tab">
+                <div class="tab-pane fade show active" id="nav-product-edit" role="tab-panel" aria-labelledby="nav-product-edit-tab">
                     <!-- EDIT PRODUCT FORM -->
                     <form id="patch-product-form">
-                        <p class="h5">Edit Product</p>
+                        <h5>Edit Product</h5>
                         <!-- PRODUCT NAME -->
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">Product ID:</span>
-                            <input type="text" class="form-control" placeholder="id" aria-label="add-product-name">
+                        <div class="input-group mb-3" style="width: 35%;">
+                            <span class="input-group-text">ID:</span>
+                            <input id="patch-product-id-input" type="number" class="form-control" placeholder="id" aria-label="patch-product-id">
                             <button>Preview</button>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">Name:</span>
-                                <input type="text" class="form-control" id="add-product-name-id" placeholder="price" aria-label="add-product-price">  
-                            </div>
-                            <span class="input-group-text">Price:</span>
-                            <input type="text" class="form-control" placeholder="price" aria-label="add-product-price" value="">
-                            <span class="input-group-text">Weight:</span>
-                            <input type="text" class="form-control" placeholder="weight" aria-label="add-product-weight"value="">
+                        <div class="input-group mb-3" style="width: 55%;">
+                            <span class="input-group-text">Name:</span>
+                            <input id="patch-product-name-input" type="text" class="form-control" placeholder="name"
+                                aria-label="add-product-price">
                         </div>
+                        <div class="input-group mb-3" style="width: 35%;">
+                            <span class="input-group-text">Price:</span>
+                            <input id="patch-product-price-input" type="number" class="form-control" placeholder="price"
+                                aria-label="add-product-price" value="">
+                        </div>
+                        <div class="input-group mb-3" style="width: 35%;">
+                            <span class="input-group-text">Weight:</span>
+                            <input id="patch-product-weight-input" type="number" class="form-control" placeholder="weight"
+                                aria-label="add-product-weight" value="">
+                        </div>
+                    
                         <button class="btn btn-primary">Create Product</button>
                     </form>
                     <!-- EDIT PRODUCT PREVIEW-->
@@ -197,16 +205,16 @@
                     <table class="table" id="patch-product-preview-table">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Weight</th>
+                                <th class="product-table-head-id">ID</th>
+                                <th class="product-table-head-name">NAME</th>
+                                <th class="product-table-head-price">PRICE</th>
+                                <th class="product-table-head-weight">WEIGHT</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>ID</td>
-                                <td>NAME</td>
+                                <td>1111111111</td>
+                                <td>NAME11111111</td>
                                 <td>PRICE</td>
                                 <td>WEIGHT</td>
                             </tr>
@@ -237,13 +245,34 @@
                 <!-- DELETE -->
                 <div class="tab-pane fade" id="nav-product-delete" role="tab-panel" aria-labelledby="nav-product-delete-tab">
                     <div id="delete-product-field">
-                    <h3>Delete Product</h3>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">ID:</span>
-                        <input type="text" class="input" id="delete-product-id-input" placeholder="product id" aria-label="add-product-name">
-                        <button>Delete</button>
-                    </div>  
-                    </div>  
+                        <h3>Delete Product</h3>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">ID:</span>
+                            <input type="text" class="input" id="delete-product-id-input" placeholder="product id"
+                                aria-label="add-product-name">
+                            <button>Delete</button>
+                        </div>
+                        <div class="container" id="delete-product-preview-field">
+                            <table class="table" id="patch-product-preview-table">
+                                <thead>
+                                    <tr>
+                                        <th class="product-table-head-id">ID</th>
+                                        <th class="product-table-head-name">NAME</th>
+                                        <th class="product-table-head-price">PRICE</th>
+                                        <th class="product-table-head-weight">WEIGHT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1111111111</td>
+                                        <td>NAME11111111</td>
+                                        <td>PRICE</td>
+                                        <td>WEIGHT</td>
+                                    </tr>
+                                </tbody>
+                            </table>    
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -277,6 +306,7 @@
 <link rel="stylesheet" href="CSS/style.css">
 <link rel="stylesheet" href="CSS/navbar-style.css">
 <link rel="stylesheet" href="CSS/product-page.css">
+<link rel="stylesheet" href="CSS/product-table.css">
 <!-- JAVASCRIPT -->
 <script src="app.js"></script>
 </html>
