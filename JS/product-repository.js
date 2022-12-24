@@ -11,7 +11,6 @@ function getTableHeadProduct(){
     </thead>
     `
 }
-
 function getTableBodyProduct(object){
     return `<tr onclick="addProductToOrderList(${object.id}, 'product-create-order-table-body')">
         <td>${object.id}</td>
@@ -37,13 +36,67 @@ function getTableBodyProductForOrder(object){
         <td>${object.name}</td>
         <td id="product-for-order-price-${object.id}">${object.price}<span>kr</span></td>
         <td id="product-for-order-weight-${object.id}">${object.weight}<span>g</span></td>
-        <td><input id="product-for-order-quantity-${object.id}" type="number" class="product-create-order-table-quantity-input" value=1></td
+        <td><input id="product-for-order-quantity-${object.id}" type="number" class="product-create-order-table-quantity-input" value=1
+         onchange="updateOrderListValues(${object.id})"
+         oninput="updateOrderListValues(${object.id})"></td
     </tr>
     `
 }
 
 
+// EDIT PRODUCT
+function editProductPreview(id, destination){
+  console.log('loding preview')
+  fetchObjectById('product', id, destination)
+}
+function updateProductValue(field, value, id, destination){
+  console.log('updating')
+  patch('product', field, id, value)
+  setTimeout(() => {editProductPreview(id, destination)}, 500)
+  updateProductRefreshInput(field)
+}
+function updateProductValueAll(id, destination){
+  patch('product', 'name', id, document.getElementById('patch-product-name-input').value)
+  patch('product', 'price', id, document.getElementById('patch-product-price-input').value)
+  patch('product', 'weight', id, document.getElementById('patch-product-weight-input').value)
+  setTimeout(() => {editProductPreview(id, destination)}, 500)
+  updateProductRefreshInputAll()
+}
+function updateProductRefreshInputAll(){
+  console.log('no field')
+  updateProductRefreshInput('name')
+  updateProductRefreshInput('price')
+  updateProductRefreshInput('weight')
+}
+function updateProductRefreshInput(field){
+  document.getElementById('patch-product-' + field + '-input').value = ""
+}
+// ADD NEW PRODUCT
+function createOrder(){
+  let inputs = document.querySelectorAll('#add-product-input')
+  if(validateCreateOrder(inputs)){
+    post('product', inputs)
+  }
+  console.log('getting object')
+  setTimeout(() => { getAllObject('product', 'add-product-view-all-table'); }, 500)
+}
+function validateCreateOrder(inputs){
+  let result = true
+  inputs.forEach((input) => {
+    if(input.value === "" || input.value === null){
+      result = false
+    }
+  })
+  return result
+}
 
+// DELETE PRODUCT
+function deleteProduct(id){
+  deleteObject('product', id)
+}
+function deleteProductPreview(id){
+  getObjectById('product', id, 'delete-product-preview-table')
+}
 
 // ADD PRODUCT TO ORDER LIST FUNCTIONS
 function addProductToOrderList(id, destination) {
@@ -98,13 +151,11 @@ function updateOrderListValuesTest(){
   document.getElementById('product-create-order-total-price').innerHTML = totalPrice + " kr"
   document.getElementById('product-create-order-total-weight').innerHTML = totalWeight + " g"
 }
-
 function test2(id){
   let quantity = parseInt(document.getElementById('product-for-order-quantity-' + id).value)
   let price = parseInt(document.getElementById('product-for-order-price-' + id).innerText)
   return (quantity*price)
 }
-
 function test3(id){
   let quantity = parseInt(document.getElementById('product-for-order-quantity-' + id).value)
   let weight = parseInt(document.getElementById('product-for-order-weight-' + id).innerText)

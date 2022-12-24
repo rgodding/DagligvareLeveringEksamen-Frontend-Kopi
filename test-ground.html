@@ -46,20 +46,16 @@
                     aria-labelledby="nav-product-view-all-tab">   
                     <div class="container" id="view-all-product">
                         <h3>View All Products</h3>
-                        <div class="row">
-                        <div class="input-group col">
-                            <span class="input-group-text">ID:</span>
-                            <input id="product-view-all-find-id-input" type="number" class="form-control" placeholder="id" aria-label="find-product-id">
-                            <button onclick="getObjectById('product', document.getElementById('product-view-all-find-id-input').value, 'view-all-product-table')" style="font-size: 12px;">Preview</button>
-                        </div>
-                        <div class="input-group col">
-                            <span class="input-group-text">Name:</span>
-                            <input id="product-view-all-find-name-input" type="text" class="form-control" placeholder="name" aria-label="find-product-name">
-                            <button onclick="getObjectByName('product', document.getElementById('product-view-all-find-name-input').value, 'view-all-product-table')" style="font-size: 12px;">Preview</button>
-                        </div>
-                        <div class="col">
-                            <button onclick="getAllObject('product', 'view-all-product-table')">REFRESH</button>
-                        </div>
+                        <div class="row" id="product-view-all-input-field">
+                            <div id="product-view-all-input-field-id" class="input-group col">
+                                <span class="input-group-text">ID:</span>
+                                <input id="product-view-all-find-id-input" type="number" class="form-control" placeholder="id">
+                                <button onclick="getObjectById('product', document.getElementById('product-view-all-find-id-input').value, 'view-all-product-table')" type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
+                            </div>
+                            <div id="product-view-all-input-field-name" class="input-group input-group-sm col">
+                                <span class="input-group-text">NAME:</span>
+                                <input oninput="productViewAllFindByName(document.getElementById('product-view-all-find-name-input').value)" id="product-view-all-find-name-input" type="text" class="form-control" placeholder="name">
+                            </div>
                         </div>
                         <!-- VIEW ALL PRODUCT TABLE -->
                         <table class="table table-hover" id="view-all-product-table"></table>
@@ -86,7 +82,6 @@
                     <div>
                         <h4>Total Price:<p id="product-create-order-total-price"></p></h4>
                         <h4>Total Weight:<p id="product-create-order-total-weight"></p></h4>
-
                     </div>
                     <button class="btn btn-primary">Create Order</button>
                 </div>
@@ -96,100 +91,80 @@
                     <!-- EDIT PRODUCT FORM -->
                     <form id="patch-product-form">
                         <h5>Edit Product</h5>
-                        <div class="input-group mb-3" style="width: 35%;">
-                            <span class="input-group-text">ID:</span>
-                            <input id="patch-product-id-input" type="number" class="form-control" placeholder="id" aria-label="patch-product-id">
-                            <button>Preview</button>
+                        <div id="patch-product-form-id-field">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">ID:</span>
+                                <input oninput="editProductPreview(document.getElementById('patch-product-id-input').value, 'patch-product-preview-table')" id="patch-product-id-input" type="number" class="form-control" placeholder="id"
+                                    aria-label="patch-product-id">
+                            </div>
                         </div>
-                        <div class="input-group mb-3" style="width: 55%;">
-                            <span class="input-group-text">Name:</span>
-                            <input id="patch-product-name-input" type="text" class="form-control" placeholder="name"
-                                aria-label="add-product-price">
+                        <div id="patch-product-form-name-field">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Name:</span>
+                                <input id="patch-product-name-input" type="text" class="form-control" placeholder="name"
+                                    aria-label="add-product-price">
+                                <button
+                                    onclick="updateProductValue('name', document.getElementById('patch-product-name-input').value, document.getElementById('patch-product-id-input').value, 'patch-product-preview-table')">Update</button>
+                            </div>
                         </div>
-                        <div class="input-group mb-3" style="width: 35%;">
-                            <span class="input-group-text">Price:</span>
-                            <input id="patch-product-price-input" type="number" class="form-control" placeholder="price"
-                                aria-label="add-product-price" value="">
+                        <div id="patch-product-form-price-weight-field">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Price:</span>
+                                <input id="patch-product-price-input" type="number" class="form-control" placeholder="price"
+                                    aria-label="add-product-price" value="">
+                                <button
+                                    onclick="updateProductValue('price', document.getElementById('patch-product-price-input').value, document.getElementById('patch-product-id-input').value, 'patch-product-preview-table')">Update</button>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Weight:</span>
+                                <input id="patch-product-weight-input" type="number" class="form-control" placeholder="weight"
+                                    aria-label="add-product-weight" value="">
+                                <button
+                                    onclick="updateProductValue('weight', document.getElementById('patch-product-weight-input').value, document.getElementById('patch-product-id-input').value, 'patch-product-preview-table')">Update</button>
+                            </div>
                         </div>
-                        <div class="input-group mb-3" style="width: 35%;">
-                            <span class="input-group-text">Weight:</span>
-                            <input id="patch-product-weight-input" type="number" class="form-control" placeholder="weight"
-                                aria-label="add-product-weight" value="">
-                        </div>
-                    
-                        <button class="btn btn-primary">Create Product</button>
+                        <button onclick="updateProductValueAll(document.getElementById('patch-product-id-input').value, 'patch-product-preview-table')" class="btn btn-primary">Update All</button>
                     </form>
                     <!-- EDIT PRODUCT PREVIEW-->
                     <div class="container" id="patch-product-preview-field">
-                    <table class="table" id="patch-product-preview-table">
-                        <thead>
-                            <tr>
-                                <th class="product-table-head-id">ID</th>
-                                <th class="product-table-head-name">NAME</th>
-                                <th class="product-table-head-price">PRICE</th>
-                                <th class="product-table-head-weight">WEIGHT</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1111111111</td>
-                                <td>NAME11111111</td>
-                                <td>PRICE</td>
-                                <td>WEIGHT</td>
-                            </tr>
-                        </tbody>
-                    </table>                    
+                    <table class="table" id="patch-product-preview-table"></table>                    
                     </div>
                 </div>
                 <!-- CREATE -->
                 <div class="tab-pane fade" id="nav-product-create" role="tab-panel" aria-labelledby="nav-product-create-tab">
                     <div class="container" id="add-product-form-container">
-                        <form id="add-product-form">
+                        <form class="row g-3 needs-validation needs-validation" id="add-product-form" novalidate onsubmit="return false">
                             <p class="h5">Create Product</p>
-                            <!-- PRODUCT NAME -->
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3 form-label">
                                 <span class="input-group-text">Name:</span>
-                                <input type="text" class="form-control" placeholder="name" aria-label="add-product-name">
+                                <input id="add-product-input" type="text" class="form-control" placeholder="name" aria-label="add-product-name"
+                                    required>
+
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Price:</span>
-                                <input type="text" class="form-control" placeholder="price" aria-label="add-product-price">
+                                <input id="add-product-input" type="number" class="form-control" placeholder="price"
+                                    aria-label="add-product-price" required>
                                 <span class="input-group-text">Weight:</span>
-                                <input type="text" class="form-control" placeholder="weight" aria-label="add-product-weight">
+                                <input id="add-product-input" type="number" class="form-control" placeholder="weight"
+                                    aria-label="add-product-weight" required>
                             </div>
-                            <button class="btn btn-primary">Create Product</button>
+                            <button onclick="return createOrder()" class="btn btn-primary" type="submit">Create Product</button>
                         </form>
                     </div>
+                    <table class="table" id="add-product-view-all-table"></table>
                 </div>
                 <!-- DELETE -->
                 <div class="tab-pane fade" id="nav-product-delete" role="tab-panel" aria-labelledby="nav-product-delete-tab">
                     <div id="delete-product-field">
-                        <h3>Delete Product</h3>
                         <div class="input-group mb-3">
                             <span class="input-group-text">ID:</span>
-                            <input type="text" class="input" id="delete-product-id-input" placeholder="product id"
+                            <input oninput="deleteProductPreview(document.getElementById('delete-product-id-input').value)" type="text" class="input" id="delete-product-id-input" placeholder="product id"
                                 aria-label="add-product-name">
-                            <button>Delete</button>
+                            <button onclick="deleteProduct(document.getElementById('delete-product-id-input').value)">Delete</button>
                         </div>
                         <div class="container" id="delete-product-preview-field">
-                            <table class="table" id="patch-product-preview-table">
-                                <thead>
-                                    <tr>
-                                        <th class="product-table-head-id">ID</th>
-                                        <th class="product-table-head-name">NAME</th>
-                                        <th class="product-table-head-price">PRICE</th>
-                                        <th class="product-table-head-weight">WEIGHT</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1111111111</td>
-                                        <td>NAME11111111</td>
-                                        <td>PRICE</td>
-                                        <td>WEIGHT</td>
-                                    </tr>
-                                </tbody>
-                            </table>    
+                            <table class="table" id="delete-product-preview-table"></table>    
                         </div>
                     </div>
                 </div>
@@ -231,4 +206,6 @@
 <script src="JS/table.js"></script>
 <script src="JS/repository.js"></script>
 <script src="JS/product-repository.js"></script>
+<script src="JS/patch-repository.js"></script>
+<script src="JS/post-repository.js"></script>
 </html>
