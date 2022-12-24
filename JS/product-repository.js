@@ -25,8 +25,8 @@ function getTableBodyProductForOrder(object){
     return `<tr>
         <td class="product-for-order-id">${object.id}</td>
         <td>${object.name}</td>
-        <td>${object.price} kr</td>
-        <td>${object.weight} g</td>
+        <td>${object.price}</td>
+        <td>${object.weight}</td>
         <td><input id="product-for-order-quantity-${object.id}" type="number" class="product-create-order-table-quantity-input" value=1></td
     </tr>
     `
@@ -35,8 +35,8 @@ function getTableBodyProductForOrder(object){
     return `<tr>
         <td class="product-for-order-id">${object.id}</td>
         <td>${object.name}</td>
-        <td>${object.price} kr</td>
-        <td>${object.weight} g</td>
+        <td id="product-for-order-price-${object.id}">${object.price}<span>kr</span></td>
+        <td id="product-for-order-weight-${object.id}">${object.weight}<span>g</span></td>
         <td><input id="product-for-order-quantity-${object.id}" type="number" class="product-create-order-table-quantity-input" value=1></td
     </tr>
     `
@@ -44,6 +44,8 @@ function getTableBodyProductForOrder(object){
 
 
 
+
+// ADD PRODUCT TO ORDER LIST FUNCTIONS
 function addProductToOrderList(id, destination) {
   let productId = document.querySelectorAll(".product-for-order-id");
   let exists = false;
@@ -57,7 +59,6 @@ function addProductToOrderList(id, destination) {
     .then((response) => response.json())
     .then((object) => {
       if (exists) {
-        console.log("exists");
         let test = 'product-for-order-quantity-' + object.id
         let value = parseInt(document.getElementById(test).value)
         value += 1
@@ -72,5 +73,40 @@ function addProductToOrderList(id, destination) {
         document.getElementById(destination).innerHTML = html;
         */
       }
+      updateOrderListValues(id)  
+      /*
+      updateOrderListValuesTest()
+      */
     });
+}
+function updateOrderListValues(id){
+  let quantity = parseInt(document.getElementById('product-for-order-quantity-' + id).value)
+  let price = parseInt(document.getElementById('product-for-order-price-' + id).innerText)
+  let weight = parseInt(document.getElementById('product-for-order-weight-' + id).innerText)
+
+  document.getElementById('product-create-order-total-price').innerText = (price*quantity) + "kr"
+  document.getElementById('product-create-order-total-weight').innerText = (weight*quantity) + "g"
+}
+function updateOrderListValuesTest(){
+  let totalPrice = 0
+  let totalWeight = 0
+  let idList = document.querySelectorAll(".product-for-order-id");
+  idList.forEach((id) => {
+    totalPrice += test2(parseInt(id.innerHTML))
+    totalWeight += test3(parseInt(id.innerHTML))
+  })
+  document.getElementById('product-create-order-total-price').innerHTML = totalPrice + " kr"
+  document.getElementById('product-create-order-total-weight').innerHTML = totalWeight + " g"
+}
+
+function test2(id){
+  let quantity = parseInt(document.getElementById('product-for-order-quantity-' + id).value)
+  let price = parseInt(document.getElementById('product-for-order-price-' + id).innerText)
+  return (quantity*price)
+}
+
+function test3(id){
+  let quantity = parseInt(document.getElementById('product-for-order-quantity-' + id).value)
+  let weight = parseInt(document.getElementById('product-for-order-weight-' + id).innerText)
+  return (quantity*weight)
 }
