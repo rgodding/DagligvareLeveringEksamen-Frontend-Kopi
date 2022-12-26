@@ -72,15 +72,15 @@ function updateProductRefreshInput(field){
   document.getElementById('patch-product-' + field + '-input').value = ""
 }
 // ADD NEW PRODUCT
-function createOrder(){
+function createProduct(){
   let inputs = document.querySelectorAll('#add-product-input')
-  if(validateCreateOrder(inputs)){
+  if(validateCreateProduct(inputs)){
     post('product', inputs)
   }
   console.log('getting object')
   setTimeout(() => { getAllObject('product', 'add-product-view-all-table'); }, 500)
 }
-function validateCreateOrder(inputs){
+function validateCreateProduct(inputs){
   let result = true
   inputs.forEach((input) => {
     if(input.value === "" || input.value === null){

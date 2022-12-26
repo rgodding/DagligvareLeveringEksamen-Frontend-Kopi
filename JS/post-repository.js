@@ -38,3 +38,7 @@ function generateForm(type, input) {
         return dataVanObject;
     }
   }
+
+  function generateProductforOrderForm(){
+    
+  }

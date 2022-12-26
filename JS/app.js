@@ -70,9 +70,14 @@ function templateSwith(){
     })
 })()
 
-
+document.getElementById('patch-delivery-form').addEventListener("click", function(event){
+  event.preventDefault()
+})
 document.getElementById('patch-product-form').addEventListener("click", function(event){
     event.preventDefault()
+})
+document.getElementById('patch-order-form').addEventListener("click", function(event){
+  event.preventDefault()
 })
 function registerClick(e) {
   e.preventDefault();
