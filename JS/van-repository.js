@@ -20,7 +20,44 @@ function getTableBodyVan(object){
     </tr>
     `
 }
+function getTableBodyVanDetail(object){
+  return `<tr onclick="viewVanDetails(${object.id}, 'van-view-details-van-table-body')">
+  <td>${object.id}</td>
+  <td>${object.brand}</td>
+  <td>${object.model} kr</td>
+  <td>${object.capacity} g</td>
+</tr>
+`
+}
 
+// VAN DETAILS
+function viewVanDetails(id, destination){
+  viewVanDetailsVan(id, destination) 
+  viewVanDetailsDeliveries(id) 
+}
+function viewVanDetailsVan(id, destination){
+  fetch(getLink("van") + "/" + id)
+  .then((response) => response.json())
+  .then((object) => {
+    html = ""
+    html += getTableBodyVan(object)
+    document.getElementById(destination).innerHTML = html
+  })
+}
+function viewVanDetailsDeliveries(id){
+  fetch(getLink('delivery') + "/find-deliveries-by-van-id/" + id)
+  .then((response) => response.json())
+  .then((object) => {
+    let html = ""
+    if(document.getElementById('van-ew-details-deliveries-body') != null){
+      html += document.getElementById('van-ew-details-deliveries-body')
+    }
+    object.forEach((object) => {
+      html += getTableBodyDelivery(object)
+    })
+    document.getElementById('van-view-details-deliveries-body').innerHTML = html
+  })
+}
 // EDIT VAN
 function editVanPreview(id, destination){
   fetchObjectById('van', id, destination)

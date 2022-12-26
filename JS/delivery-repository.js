@@ -12,6 +12,8 @@ function getTableHeadDelivery(){
     `
 }
 function getTableBodyDelivery(object){
+  console.log('here we are')
+  console.log(object)
     return `<tr>
         <td>${object.id}</td>
         <td>${object.deliveryDate}</td>

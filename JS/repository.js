@@ -1,12 +1,12 @@
 // Fetch All
-function fetchAllObject(type, destination) {
+function fetchAllObject(type, destination, type2) {
   fetch(getLink(type))
     .then((response) => response.json())
     .then((object) => {
       let html = "";
       html += getTableHead(type);
       object.forEach((object) => {
-        html += getTableBody(type, object);
+        html += getTableBody(type2, object);
       });
       document.getElementById(destination).innerHTML = html;
     });

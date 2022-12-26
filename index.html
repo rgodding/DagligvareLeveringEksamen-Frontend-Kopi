@@ -146,7 +146,7 @@
             <h3>PRODUCT PAGE</h3>
             <!-- PRODUCT NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a onclick="getAllObject('product', 'view-all-product-table')" class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
+                <a onclick="getAllObject('product', 'view-all-product-table', 'product-view-all')" class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
                 <a class="nav-link" id="nav-product-edit-tab" data-bs-toggle="tab" href="#nav-product-edit" role="tab" aria-controls="nav-product-edit" area-selected="false">Edit Product</a>
                 <a class="nav-link" id="nav-product-create-tab" data-bs-toggle="tab" href="#nav-product-create" role="tab" aria-controls="nav-product-create" area-selected="false">Create Product</a>
                 <a class="nav-link" id="nav-product-delete-tab" data-bs-toggle="tab" href="#nav-product-delete" role="tab" aria-controls="nav-product-delete" area-selected="false">Delete Product</a>
@@ -436,7 +436,7 @@
             <h3>VAN PAGE</h3>
             <!-- VAN NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a onclick="getAllObject('van', 'view-all-van-table')" class="nav-link active" id="nav-van-view-all-tab"
+                <a onclick="getAllObject('van', 'view-all-van-table', 'van-view-all-detail')" class="nav-link active" id="nav-van-view-all-tab"
                     data-bs-toggle="tab" href="#nav-van-view-all" role="tab" aria-controls="nav-van-view-all"
                     area-selected="true">View All</a>
                 <a class="nav-link" id="nav-van-edit-tab" data-bs-toggle="tab" href="#nav-van-edit" role="tab"
@@ -471,6 +471,46 @@
                         <!-- VIEW ALL VAN TABLE -->
                         <table class="table table-hover" id="view-all-van-table"></table>
                     </div>
+                </div>
+                <div id="van-view-details">
+                    <caption>VIEW VAN DETAILS</caption>
+                    <div id="van-view-details-table-field">
+                        <!-- TEMPORARY PRODUCT LIST FOR ORDER -->
+                        <table class="table" id="van-view-van-table">
+                            <thead>
+                                <tr>
+                                    <th id="van-view-details-table-id-head">ID</th>
+                                    <th id="van-view-details-table-name-head">BRAND</th>
+                                    <th id="van-view-details-table-price-head">MODEL</th>
+                                    <th id="van-view-details-table-weight-head">CAPACITY</th>
+                                </tr>
+                            </thead>
+                            <tbody id="van-view-details-van-table-body">
+                            </tbody>
+                            <tbody id="van-view-details-deliveries-table-body">
+                            </tbody>
+                        </table>
+                        <table class="table" id="van-view-deliveries-table">
+                            <thead>
+                                <tr>
+                                    <th class="van-table-head-id">ID</th>
+                                    <th class="van-table-head-brand">DELIVERY DATE</th>
+                                    <th class="van-table-head-model">WAREHOUSE</th>
+                                    <th class="van-table-head-capacity">DESTINATION</th>
+                                </tr>
+                            </thead>
+                            <tbody id="van-view-details-deliveries-body">
+                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4>Total Capacity:<p id="product-create-order-total-price"></p>
+                        </h4>
+                        <h4>Total Weight:<p id="product-create-order-total-weight"></p>
+                        </h4>
+                    </div>
+                    <button class="btn btn-primary">Create Order</button>
                 </div>
                 <!-- EDIT -->
                 <div class="tab-pane fade" id="nav-van-edit" role="tab-panel" aria-labelledby="nav-van-edit-tab">

@@ -80,3 +80,38 @@
 #patch-van-preview-table{
     text-align: center;
 }
+
+/* View Van Deatils*/
+#van-view-details{
+    position: absolute;
+    top: 0;
+    width: 35%;
+    margin-left: 64%;
+    text-align: center;
+    margin-top: 43px;
+    height: fit-content;    
+    border: solid 1px;
+    background-color: rgb(234, 234, 234);
+}
+
+
+#van-view-van-table{
+   
+}
+#van-view-deliveries-table{
+    
+}
+
+.van-table-head-id{
+    background-color: aliceblue;
+}
+.van-table-head-brand{
+    width: 50%;
+}
+.van-table-head-model{
+    width: 20%;
+}
+.van-table-head-capacity{
+    width: 20%;
+    background-color: black;
+}

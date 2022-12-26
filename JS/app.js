@@ -1,7 +1,7 @@
 // VIEW ALL
-function getAllObject(type, destination){
-  fetchAllObject(type, destination)
-
+function getAllObject(type, destination, type2){
+  console.log('finding all products')
+  fetchAllObject(type, destination, type2)
 }
 // VIEW
 function getObjectById(type, id, destination){
