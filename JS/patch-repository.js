@@ -47,10 +47,8 @@ function generateProductPatchBody(field, value){
 }
 
 function generatePatchBodyOrderProduct(type, field, value){
-  console.log('generating patch body order product')
   switch(field){
     case "product":
-      console.log('product field')
     return `
     {
       "id": ` + value + `

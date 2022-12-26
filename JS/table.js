@@ -12,9 +12,9 @@ function getTableHead(type){
   }
   
   function getTableBody(type, object) {
+    console.log('tablebody: (' + type +')')
     switch (type) {
       case "delivery":
-        console.log("getting delivery body");
         return getTableBodyDelivery(object);
       case "product":
         return getTableBodyProduct(object);
@@ -24,7 +24,7 @@ function getTableHead(type){
         return getTableBodyOrder(object);
       case "van":
         return getTableBodyVan(object);
-      case "van-view-all-detail":
+      case "van-view-all":
         return getTableBodyVanDetail(object);
     }
   }

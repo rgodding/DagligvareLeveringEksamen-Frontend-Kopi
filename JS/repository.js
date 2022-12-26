@@ -1,5 +1,17 @@
 // Fetch All
-function fetchAllObject(type, destination, type2) {
+function fetchAllObject(type, destination) {
+  fetch(getLink(type))
+    .then((response) => response.json())
+    .then((object) => {
+      let html = "";
+      html += getTableHead(type);
+      object.forEach((object) => {
+        html += getTableBody(type, object);
+      });
+      document.getElementById(destination).innerHTML = html;
+    });
+}
+function fetchAllObject2(type, destination, type2) {
   fetch(getLink(type))
     .then((response) => response.json())
     .then((object) => {
@@ -23,6 +35,21 @@ function fetchAllObjectContaining(type, field, input, destination){
     document.getElementById(destination).innerHTML = html;
   })
 }
+function fetchNewestObject(type, productId, quantity){
+  fetch(getLink(type))
+    .then((response) => response.json())
+    .then((object) => {
+      let id = 0;
+      html += getTableHead(type);
+      object.forEach((object) => {
+        if(object.id > id){
+          id = object.id
+        }
+      });
+      updateOrderValue2('product', productId, id)
+    });
+
+}
 // Fetch
 function fetchObjectById(type, id, destination) {
   fetch(getLink(type) + "/" + id)
@@ -45,17 +72,14 @@ function fetchObjectByName(type, name, destination) {
       });
 }
 function fetchProductObject(id){
-  console.log('fetcing product object')
   fetch(getLink('product') + '/' + id)
   .then((response) => response.json())
   .then((object) => {
-    console.log('fetcing product object')
     tempProductObject = object
   })
 }
 // Patch
 function patch(type, field, id, value) {
-  console.log('patch type: ' + type)
   const responseFlow = fetch(getLink(type) + "/" + id, {
     method: "PATCH",
     headers: {
@@ -69,6 +93,12 @@ function patch(type, field, id, value) {
 function post(type, input){
   postObject(type, generateForm(type, input))
 }
+function postOrder(value) {
+  const dataOrderObject = {
+    quantity: value,
+  };
+  postObjectGetId('order', dataOrderObject)
+}
 function postProductToOrder(id, value){
   postProductToOrderFunction(id, generateProductforOrderForm(value)) 
 }
@@ -77,7 +107,6 @@ function postDeliveryToOrder(id, value){
 
 }
 async function postDeliveryToOrderFunction(id, formObject){
-  console.log('final post of delivery')
   let response = await fetch(getLink('order') + '/add-delivery/' + id, {
     method: "POST",
     headers: {
@@ -97,7 +126,9 @@ async function postProductToOrderFunction(id, formObject){
     body: JSON.stringify(formObject),
   });
 }
-async function postObject(type, formObject) {
+async function postObjectGetId(type, formObject) {
+  console.log('posting object(' + type + ')')
+  console.log('object(' + formObject + ')')
   let response = await fetch(getLink(type), {
     method: "POST",
     headers: {
@@ -107,7 +138,18 @@ async function postObject(type, formObject) {
     body: JSON.stringify(formObject),
   });
 }
-
+async function postObject(type, formObject) {
+  console.log('posting object(' + type + ')')
+  console.log('object(' + formObject + ')')
+  let response = await fetch(getLink(type), {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formObject),
+  });
+}
 // Delete
 function deleteObject(type, id) {
   fetch(getLink(type) + "/" + id, {

@@ -46,11 +46,9 @@ function getTableBodyProductForOrder(object){
 
 // EDIT PRODUCT
 function editProductPreview(id, destination){
-  console.log('loding preview')
   fetchObjectById('product', id, destination)
 }
 function updateProductValue(field, value, id, destination){
-  console.log('updating')
   patch('product', field, id, value)
   setTimeout(() => {editProductPreview(id, destination)}, 500)
   updateProductRefreshInput(field)
@@ -63,7 +61,6 @@ function updateProductValueAll(id, destination){
   updateProductRefreshInputAll()
 }
 function updateProductRefreshInputAll(){
-  console.log('no field')
   updateProductRefreshInput('name')
   updateProductRefreshInput('price')
   updateProductRefreshInput('weight')
@@ -77,7 +74,6 @@ function createProduct(){
   if(validateCreateProduct(inputs)){
     post('product', inputs)
   }
-  console.log('getting object')
   setTimeout(() => { getAllObject('product', 'add-product-view-all-table'); }, 500)
 }
 function validateCreateProduct(inputs){
@@ -160,4 +156,11 @@ function test3(id){
   let quantity = parseInt(document.getElementById('product-for-order-quantity-' + id).value)
   let weight = parseInt(document.getElementById('product-for-order-weight-' + id).innerText)
   return (quantity*weight)
+}
+
+function productCreateOrder(quantity, id){
+  console.log('id: ' + id)
+  console.log('quantity: ' + quantity)
+  createOrderWithProducts(id, quantity)
+  
 }

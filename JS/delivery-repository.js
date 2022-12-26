@@ -12,8 +12,6 @@ function getTableHeadDelivery(){
     `
 }
 function getTableBodyDelivery(object){
-  console.log('here we are')
-  console.log(object)
     return `<tr>
         <td>${object.id}</td>
         <td>${object.deliveryDate}</td>
@@ -40,7 +38,6 @@ function updateDeliveryValueAll(id, destination){
   updateDeliveryRefreshInputAll()
 }
 function updateDeliveryRefreshInputAll(){
-  console.log('no field')
   updateDeliveryRefreshInput('deliveryDate')
   updateDeliveryRefreshInput('fromWarehouse')
   updateDeliveryRefreshInput('destination')
@@ -54,7 +51,6 @@ function createDelivery(){
   if(validateCreateDelivery(inputs)){
     post('delivery', inputs)
   }
-  console.log('getting object')
   setTimeout(() => { getAllObject('delivery', 'add-delivery-view-all-table'); }, 500)
 }
 function validateCreateDelivery(inputs){

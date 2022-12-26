@@ -26,7 +26,6 @@ function getTableBodyOrder(object){
           `
         }
         if(object.delivery != null){
-          console.log('delivery found')
           result +=`
           <td>DATE: ${object.delivery.deliveryDate} Destination: ${object.delivery.destination}</td>
           `
@@ -51,8 +50,6 @@ function editOrderDeliveryPreview(id, destination){
   fetchObjectById('delivery', id, destination)
 }
 function updateOrderValue(field, value, id, destination){
-  console.log('updating order value, field(' + field + ')')
-  console.log('updating order value, value(' + value + ')')
   switch (field) {
     case "quantity":
       patch("order", field, id, value);
@@ -61,7 +58,21 @@ function updateOrderValue(field, value, id, destination){
       postProductToOrder(id, value);
       break;
     case "delivery":
-      console.log('delivery found')
+      postDeliveryToOrder(id, value);
+      break;
+  }
+  setTimeout(() => {editOrderPreview(id, destination)}, 500)
+  updateOrderRefreshInput(field)
+}
+function updateOrderValue2(field, value, id, destination){
+  switch (field) {
+    case "quantity":
+      patch("order", field, id, value);
+      break;
+    case "product":
+      postProductToOrder(id, value);
+      break;
+    case "delivery":
       postDeliveryToOrder(id, value);
       break;
   }
@@ -76,7 +87,6 @@ function updateOrderValueAll(id, delivery){
   updateOrderRefreshInputAll()
 }
 function updateOrderRefreshInputAll(){
-  console.log('no field')
   updateOrderRefreshInput('quantity')
   updateOrderRefreshInput('product')
   updateOrderRefreshInput('delivery')
@@ -93,8 +103,15 @@ function createOrder(){
   if(validateCreateOrder(inputs)){
     post('order', inputs)
   }
-  console.log('getting object')
   setTimeout(() => { getAllObject('order', 'add-order-view-all-table'); }, 500)
+}
+function createOrderWithProducts(id, quantity){
+  postOrder(quantity)
+  setTimeout(() => {fetchNewestObject('order', id, quantity)}, 2000)
+  console.log('done?')
+
+
+  
 }
 function validateCreateOrder(inputs){
   let result = true
@@ -105,7 +122,6 @@ function validateCreateOrder(inputs){
   })
   return result
 }
-
 // DELETE ORDER
 function deleteOrder(id){
   deleteObject('order', id)

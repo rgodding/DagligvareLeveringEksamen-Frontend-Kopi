@@ -40,17 +40,14 @@ function generateForm(type, input) {
   }
 
   function generateProductforOrderForm(value){
-    console.log('product form value: ' + value)
     const productForOrderObject = {
       id: value,
     }
     return productForOrderObject
   }
   function generateDeliveryforOrderForm(value){
-    console.log('delivery form value: ' + value)
     const deliveryForOrderObject = {
       id: value,
     }
-    console.log('returning: ' + deliveryForOrderObject)
     return deliveryForOrderObject
   }

@@ -16,7 +16,7 @@ function getTableBodyVan(object){
         <td>${object.id}</td>
         <td>${object.brand}</td>
         <td>${object.model}</td>
-        <td>${object.capacity}</td>
+        <td>${object.capacity} g</td>
     </tr>
     `
 }
@@ -75,7 +75,6 @@ function updateVanValueAll(id, destination){
   updateVanRefreshInputAll()
 }
 function updateVanRefreshInputAll(){
-  console.log('no field')
   updateVanRefreshInput('brand')
   updateVanRefreshInput('model')
   updateVanRefreshInput('capacity')
@@ -89,7 +88,6 @@ function createVan(){
   if(validateCreateVan(inputs)){
     post('van', inputs)
   }
-  console.log('getting object')
   setTimeout(() => { getAllObject('van', 'add-van-view-all-table'); }, 500)
 }
 function validateCreateVan(inputs){

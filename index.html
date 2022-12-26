@@ -9,9 +9,9 @@
 <body>
     <!-- NAVBAR -->
     <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-        <a class="nav-link" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" area-selected="false">Home</a>
+        <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" area-selected="true">Home</a>
         <a class="nav-link" id="nav-delivery-tab" data-bs-toggle="tab" href="#nav-delivery" role="tab" aria-controls="nav-delivery" area-selected="false">Deliveries</a>
-        <a class="nav-link active" id="nav-product-tab" data-bs-toggle="tab" href="#nav-product" role="tab" aria-controls="nav-product" area-selected="false">Products</a>
+        <a class="nav-link" id="nav-product-tab" data-bs-toggle="tab" href="#nav-product" role="tab" aria-controls="nav-product" area-selected="false">Products</a>
         <a class="nav-link" id="nav-order-tab" data-bs-toggle="tab" href="#nav-order" role="tab" aria-controls="nav-order" area-selected="false">Orders</a>
         <a class="nav-link" id="nav-van-tab" data-bs-toggle="tab" href="#nav-van" role="tab" aria-controls="nav-van" area-selected="false">Vans</a>
     </nav>
@@ -19,7 +19,7 @@
     <!-- PAGE BODY -->
     <div class="tab-content" id="nav-tabContent">
         <!-- HOME BODY -->
-        <div class="tab-pane fade" id="nav-home" role="tab-panel" aria-labelledby="nav-home-tab">
+        <div class="tab-pane fade show active" id="nav-home" role="tab-panel" aria-labelledby="nav-home-tab">
             <h3>HOME</h3>
         </div>
 
@@ -146,7 +146,7 @@
             <h3>PRODUCT PAGE</h3>
             <!-- PRODUCT NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a onclick="getAllObject('product', 'view-all-product-table', 'product-view-all')" class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
+                <a onclick="getAllObject2('product', 'view-all-product-table')" class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
                 <a class="nav-link" id="nav-product-edit-tab" data-bs-toggle="tab" href="#nav-product-edit" role="tab" aria-controls="nav-product-edit" area-selected="false">Edit Product</a>
                 <a class="nav-link" id="nav-product-create-tab" data-bs-toggle="tab" href="#nav-product-create" role="tab" aria-controls="nav-product-create" area-selected="false">Create Product</a>
                 <a class="nav-link" id="nav-product-delete-tab" data-bs-toggle="tab" href="#nav-product-delete" role="tab" aria-controls="nav-product-delete" area-selected="false">Delete Product</a>
@@ -194,7 +194,7 @@
                         <h4>Total Price:<p id="product-create-order-total-price"></p></h4>
                         <h4>Total Weight:<p id="product-create-order-total-weight"></p></h4>
                     </div>
-                    <button class="btn btn-primary">Create Order</button>
+                    <button onclick="productCreateOrder(document.querySelector('.product-create-order-table-quantity-input').value, document.querySelector('.product-for-order-id').innerHTML)" class="btn btn-primary">Create Order</button>
                 </div>
                 </div>
                 <!-- EDIT -->
@@ -432,11 +432,11 @@
             </div>
         </div>
         <!-- VAN BODY-->
-        <div class="tab-pane fade show active" id="nav-van" role="tab-panel" aria-labelledby="nav-van-tab">
+        <div class="tab-pane fade" id="nav-van" role="tab-panel" aria-labelledby="nav-van-tab">
             <h3>VAN PAGE</h3>
             <!-- VAN NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a onclick="getAllObject('van', 'view-all-van-table', 'van-view-all-detail')" class="nav-link active" id="nav-van-view-all-tab"
+                <a onclick="getAllObject2('van', 'view-all-van-table')" class="nav-link active" id="nav-van-view-all-tab"
                     data-bs-toggle="tab" href="#nav-van-view-all" role="tab" aria-controls="nav-van-view-all"
                     area-selected="true">View All</a>
                 <a class="nav-link" id="nav-van-edit-tab" data-bs-toggle="tab" href="#nav-van-edit" role="tab"
@@ -505,12 +505,11 @@
                         </table>
                     </div>
                     <div>
-                        <h4>Total Capacity:<p id="product-create-order-total-price"></p>
+                        <h4>Total Capacity Left:<p id="product-create-order-total-price"></p>
                         </h4>
                         <h4>Total Weight:<p id="product-create-order-total-weight"></p>
                         </h4>
                     </div>
-                    <button class="btn btn-primary">Create Order</button>
                 </div>
                 <!-- EDIT -->
                 <div class="tab-pane fade" id="nav-van-edit" role="tab-panel" aria-labelledby="nav-van-edit-tab">
