@@ -7,6 +7,7 @@ function getTableHead(type){
       case "order":
         return getTableHeadOrder()
       case "van":
+        return getTableHeadVan()
     }
   }
   
@@ -19,5 +20,6 @@ function getTableHead(type){
       case "order":
         return getTableBodyOrder(object)
       case "van":
+        return getTableBodyVan(object)
     }
   }

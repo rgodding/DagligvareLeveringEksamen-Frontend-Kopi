@@ -1,5 +1,3 @@
-let tempJsonObject; 
-
 // Fetch All
 function fetchAllObject(type, destination) {
   fetch(getLink(type))
@@ -55,7 +53,6 @@ function fetchProductObject(id){
     tempProductObject = object
   })
 }
-
 // Patch
 function patch(type, field, id, value) {
   console.log('patch type: ' + type)
@@ -73,7 +70,22 @@ function post(type, input){
   postObject(type, generateForm(type, input))
 }
 function postProductToOrder(id, value){
-  postProductToOrderFunction(generateForm(formObject)) 
+  postProductToOrderFunction(id, generateProductforOrderForm(value)) 
+}
+function postDeliveryToOrder(id, value){
+  postDeliveryToOrderFunction(id, generateDeliveryforOrderForm(value))
+
+}
+async function postDeliveryToOrderFunction(id, formObject){
+  console.log('final post of delivery')
+  let response = await fetch(getLink('order') + '/add-delivery/' + id, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formObject),
+  });
 }
 async function postProductToOrderFunction(id, formObject){
   let response = await fetch(getLink('order') + '/add-product/' + id, {

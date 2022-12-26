@@ -1,0 +1,82 @@
+/* Van Body */
+#nav-van{
+    background-color: aliceblue;
+}
+/* Van Nav */
+#nav-tab{
+    width: fit-content;
+    border: solid 1px;
+}
+
+/* VIEW ALL VAN */
+#view-all-van-container{
+    margin-left: 0px;
+    margin-top: 25px;
+    padding: 25px;
+    background-color: bisque;
+    width: 40%;
+}
+#view-all-van-table{
+    text-align: center;
+}
+#view-all-van th{
+    width: 25%;
+}
+#view-all-van td{
+    font-family: sans-serif;
+    font-size: 10px;
+}
+#view-all-van-table{
+    width: 100%;
+}
+
+
+/* PATCH VAN*/
+#patch-van-form{
+    margin-top: 25px;
+    width: 750px;
+    padding: 25px;
+    background-color: bisque;
+}
+#patch-van-preview-field{
+    margin-left: 0px;
+    margin-top: 25px;
+    background-color: antiquewhite;
+    width: 40%;
+    text-align: center;
+}
+#patch-van-preview-table th{
+    border: solid 1px;
+}
+#patch-van-form-id-field{
+    width: 35%;
+}
+#patch-van-form-name-field{
+    width: 80%;
+}
+#patch-van-form-price-weight-field{
+    width: 55%;
+}
+
+
+
+/* ADD VAN */
+#add-van-form-container{
+    background-color: antiquewhite;
+    width: 500px;
+    padding: 25px;
+    margin-top: 25px;
+    margin-left: 0px;
+}
+
+/* DELETE VAN */
+#delete-van-field{
+    background-color: antiquewhite;
+    width: 500px;
+    margin-top: 25px;
+    padding: 25px;
+}
+
+#patch-van-preview-table{
+    text-align: center;
+}

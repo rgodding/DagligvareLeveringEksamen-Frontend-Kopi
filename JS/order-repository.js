@@ -40,7 +40,6 @@ function getTableBodyOrder(object){
         `
         return result
 }
-
 // EDIT ORDER
 function editOrderPreview(id, destination){
   fetchObjectById('order', id, destination)
@@ -48,14 +47,23 @@ function editOrderPreview(id, destination){
 function editOrderProductPreview(id, destination){
   fetchObjectById('product', id, destination)
 }
+function editOrderDeliveryPreview(id, destination){
+  fetchObjectById('delivery', id, destination)
+}
 function updateOrderValue(field, value, id, destination){
-  switch(field){
+  console.log('updating order value, field(' + field + ')')
+  console.log('updating order value, value(' + value + ')')
+  switch (field) {
     case "quantity":
-      patch('order', field, id, value)
-      break
-      case "product":
-        postProductToOrder(id, value)
-      break
+      patch("order", field, id, value);
+      break;
+    case "product":
+      postProductToOrder(id, value);
+      break;
+    case "delivery":
+      console.log('delivery found')
+      postDeliveryToOrder(id, value);
+      break;
   }
   setTimeout(() => {editOrderPreview(id, destination)}, 500)
   updateOrderRefreshInput(field)

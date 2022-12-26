@@ -1,10 +1,6 @@
 let tempProductObject;
 
 function generatePatchBody(type, field, value) {
-  console.log('generate patch body')
-  console.log('type: ' + type)
-  console.log('field: ' + field)
-  console.log('value: ' + value)
     switch (type) {
       case "delivery":
         return generateDeliveryPatchBody(field, value);
@@ -33,8 +29,6 @@ function generateDeliveryPatchBody(field, value){
         });
     }
 }
-
-
 function generateProductPatchBody(field, value){
     switch (field) {
         case "name":
@@ -51,6 +45,7 @@ function generateProductPatchBody(field, value){
           });
       }
 }
+
 function generatePatchBodyOrderProduct(type, field, value){
   console.log('generating patch body order product')
   switch(field){
@@ -58,28 +53,37 @@ function generatePatchBodyOrderProduct(type, field, value){
       console.log('product field')
     return `
     {
-      "id": 1,
-      "name": "Product 1",
-      "price": 100.0,
-      "weight": 5.0
+      "id": ` + value + `
     }
     `
   }
 
 }
 function generateOrderPatchBody(field, value){
-  console.log('patching body order')
-  console.log(' field(' + field + ')')
-  console.log(' value(' + value + ')')
   switch (field) {
     case "quantity":
       return JSON.stringify({
         quantity: value,
       });
     case "product":
-      console.log('product found id(' + value + ')')
-      console.log(fetchObjectByIdReturn('product', value))
       return fetchObjectByIdReturn('product', value)
     case "delivery":
+  }
+}
+
+function generateVanPatchBody(field, value){
+  switch(field){
+    case "brand":
+      return JSON.stringify({
+        brand: value,
+      });
+    case "model":
+      return JSON.stringify({
+        model: value,
+      });
+    case "capacity":
+      return JSON.stringify({
+        capacity: value,
+      });
   }
 }

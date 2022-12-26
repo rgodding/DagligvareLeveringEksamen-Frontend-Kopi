@@ -283,7 +283,7 @@
         </div>
 
         <!-- ORDER BODY -->
-        <div class="tab-pane fade show active" id="nav-order" role="tab-panel" aria-labelledby="nav-order-tab">
+        <div class="tab-pane fade" id="nav-order" role="tab-panel" aria-labelledby="nav-order-tab">
         
             <h3>ORDER PAGE</h3>
             <!-- ORDER NAVBAR -->
@@ -314,9 +314,9 @@
                                     type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
                             </div>
                             <div id="order-view-all-input-field-quantity" class="input-group input-group-sm col">
-                                <span class="input-group-text">QUANTITY:</span>
+                                <span class="input-group-text">DATE:</span>
                                 <input
-                                    oninput="orderViewAllFindByQuantity(document.getElementById('order-view-all-find-quantity-input').value)"
+                                    oninput="orderViewAllFindByDate(document.getElementById('order-view-all-find-quantity-input').value)"
                                     id="order-view-all-find-quantity-input" type="date" class="form-control"
                                     placeholder="quantity">
                             </div>
@@ -343,33 +343,38 @@
                         <!-- ORDER QUANTITY -->
                         <div id="patch-order-form-quantity-field">
                             <div class="input-group mb-3">
-                                <span class="input-group-text">quantity:</span>
+                                <span class="input-group-text">Quantity:</span>
                                 <input id="patch-order-quantity-input" type="number" class="form-control" placeholder="quantity"
                                     aria-label="add-order-fromWarehouse">
                                 <button
                                     onclick="updateOrderValue('quantity', document.getElementById('patch-order-quantity-input').value, document.getElementById('patch-order-id-input').value, 'patch-order-preview-table')">Update</button>
                             </div>
                         </div>
+
                         <div id="patch-order-form-product-id-destination-field">
                             <div class="input-group mb-3">
-                                <span class="input-group-text">product id:</span>
+                                <span class="input-group-text">Product id:</span>
                                 <input id="patch-order-product-id-input" type="text" class="form-control"
-                                    placeholder="fromWarehouse" aria-label="add-order-fromWarehouse" value=""
+                                    placeholder="product id" aria-label="add-order-fromWarehouse" value=""
                                     oninput="editOrderProductPreview(document.getElementById('patch-order-product-id-input').value, 'patch-order-product-preview-table')">
                                 <button
                                     onclick="updateOrderValue('product', document.getElementById('patch-order-product-id-input').value, document.getElementById('patch-order-id-input').value, 'patch-order-preview-table')">Update</button>
                             </div>
-                            <div class="container" id="patch-delivery-preview-field">
+                            <div class="container" id="patch-order-product-preview-field">
                                 <table class="table" id="patch-order-product-preview-table">
                                 </table>                    
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">delivery id:</span>
-                                <input id="patch-order-destination-input" type="text" class="form-control"
-                                    placeholder="destination" aria-label="add-order-destination" value="">
+                                <span class="input-group-text">Delivery id:</span>
+                                <input oninput="editOrderDeliveryPreview(document.getElementById('patch-order-delivery-id-input').value, 'patch-order-delivery-preview-table')" id="patch-order-delivery-id-input" type="text" class="form-control"
+                                    placeholder="delivery id" aria-label="add-order-destination" value="">
                                 <button
-                                    onclick="updateOrderValue('destination', document.getElementById('patch-order-destination-input').value, document.getElementById('patch-order-id-input').value, 'patch-order-preview-table')">Update</button>
-                            </div>
+                                    onclick="updateOrderValue('delivery', document.getElementById('patch-order-delivery-id-input').value, document.getElementById('patch-order-id-input').value, 'patch-order-preview-table')">Update</button>
+                                </div>
+                                <div class="container" id="patch-order-delivery-preview-field">
+                                    <table class="table" id="patch-order-delivery-preview-table">
+                                    </table>                    
+                                </div>
                         </div>
                         <button
                             onclick="updateOrderValueAll(document.getElementById('patch-order-id-input').value, 'patch-order-preview-table')"
@@ -387,11 +392,11 @@
                             onsubmit="return false">
                             <p class="h5">Create Order</p>
                             <div class="input-group mb-3 form-label">
-                                <span class="input-group-text">date:</span>
-                                <input id="add-order-input" type="date" class="form-control" placeholder="quantity"
+                                <span class="input-group-text">Quantity:</span>
+                                <input id="add-order-input" type="number" class="form-control" placeholder="quantity"
                                     aria-label="add-order-quantity" required>
-        
                             </div>
+                            <!-- EVT. ADD PRODUCT AND DELIVERY ON CREATION
                             <div class="input-group mb-3">
                                 <span class="input-group-text">warehouse:</span>
                                 <input id="add-order-input" type="number" class="form-control" placeholder="fromWarehouse"
@@ -402,6 +407,7 @@
                                 <input id="add-order-input" type="number" class="form-control" placeholder="destination"
                                     aria-label="add-order-destination" required>
                             </div>
+                            -->
                             <button onclick="return createOrder()" class="btn btn-primary" type="submit">Create Order</button>
                         </form>
                     </div>
@@ -426,14 +432,138 @@
             </div>
         </div>
         <!-- VAN BODY-->
-        <div class="tab-pane fade" id="nav-van" role="tab-panel" aria-labelledby="nav-van-tab">
+        <div class="tab-pane fade show active" id="nav-van" role="tab-panel" aria-labelledby="nav-van-tab">
             <h3>VAN PAGE</h3>
+            <!-- VAN NAVBAR -->
+            <nav class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a onclick="getAllObject('van', 'view-all-van-table')" class="nav-link active" id="nav-van-view-all-tab"
+                    data-bs-toggle="tab" href="#nav-van-view-all" role="tab" aria-controls="nav-van-view-all"
+                    area-selected="true">View All</a>
+                <a class="nav-link" id="nav-van-edit-tab" data-bs-toggle="tab" href="#nav-van-edit" role="tab"
+                    aria-controls="nav-van-edit" area-selected="false">Edit Van</a>
+                <a class="nav-link" id="nav-van-create-tab" data-bs-toggle="tab" href="#nav-van-create" role="tab"
+                    aria-controls="nav-van-create" area-selected="false">Create Van</a>
+                <a class="nav-link" id="nav-van-delete-tab" data-bs-toggle="tab" href="#nav-van-delete" role="tab"
+                    aria-controls="nav-van-delete" area-selected="false">Delete Van</a>
+            </nav>
+            <!-- VAN INNER BODY -->
+            <div class="tab-content" id="nav-tabContent-van">
+                <!-- VIEW ALL -->
+                <div class="tab-pane fade show active" id="nav-van-view-all" role="tab-panel"
+                    aria-labelledby="nav-van-view-all-tab">
+                    <div class="container" id="view-all-van-container">
+                        <h3>View All Vans</h3>
+                        <div class="row" id="van-view-all-input-field">
+                            <div id="van-view-all-input-field-id" class="input-group col">
+                                <span class="input-group-text">ID:</span>
+                                <input id="van-view-all-find-id-input" type="number" class="form-control" placeholder="id">
+                                <button
+                                    onclick="getObjectById('van', document.getElementById('van-view-all-find-id-input').value, 'view-all-van-table')"
+                                    type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
+                            </div>
+                            <div id="van-view-all-input-field-brand" class="input-group input-group-sm col">
+                                <span class="input-group-text">BRAND:</span>
+                                <input
+                                    oninput="vanViewAllFindByBrand(document.getElementById('van-view-all-find-brand-input').value)"
+                                    id="van-view-all-find-brand-input" type="date" class="form-control" placeholder="brand">
+                            </div>
+                        </div>
+                        <!-- VIEW ALL VAN TABLE -->
+                        <table class="table table-hover" id="view-all-van-table"></table>
+                    </div>
+                </div>
+                <!-- EDIT -->
+                <div class="tab-pane fade" id="nav-van-edit" role="tab-panel" aria-labelledby="nav-van-edit-tab">
+                    <!-- EDIT VAN FORM -->
+                    <form id="patch-van-form">
+                        <h5>Edit Van</h5>
+                        <div id="patch-van-form-id-field">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">ID:</span>
+                                <input
+                                    oninput="editVanPreview(document.getElementById('patch-van-id-input').value, 'patch-van-preview-table')"
+                                    id="patch-van-id-input" type="number" class="form-control" placeholder="id"
+                                    aria-label="patch-van-id">
+                            </div>
+                        </div>
+                        <div id="patch-van-form-brand-field">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">brand:</span>
+                                <input id="patch-van-brand-input" type="text" class="form-control" placeholder="brand"
+                                    aria-label="add-van-model">
+                                <button
+                                    onclick="updateVanValue('brand', document.getElementById('patch-van-brand-input').value, document.getElementById('patch-van-id-input').value, 'patch-van-preview-table')">Update</button>
+                            </div>
+                        </div>
+                        <div id="patch-van-form-model-capacity-field">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">model:</span>
+                                <input id="patch-van-model-input" type="text" class="form-control" placeholder="model"
+                                    aria-label="add-van-model" value="">
+                                <button
+                                    onclick="updateVanValue('model', document.getElementById('patch-van-model-input').value, document.getElementById('patch-van-id-input').value, 'patch-van-preview-table')">Update</button>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">capacity:</span>
+                                <input id="patch-van-capacity-input" type="number" class="form-control" placeholder="capacity"
+                                    aria-label="add-van-capacity" value="">
+                                <button
+                                    onclick="updateVanValue('capacity', document.getElementById('patch-van-capacity-input').value, document.getElementById('patch-van-id-input').value, 'patch-van-preview-table')">Update</button>
+                            </div>
+                        </div>
+                        <button
+                            onclick="updateVanValueAll(document.getElementById('patch-van-id-input').value, 'patch-van-preview-table')"
+                            class="btn btn-primary">Update All</button>
+                    </form>
+                    <!-- EDIT VAN PREVIEW-->
+                    <div class="container" id="patch-van-preview-field">
+                        <table class="table" id="patch-van-preview-table"></table>
+                    </div>
+                </div>
+                <!-- CREATE -->
+                <div class="tab-pane fade" id="nav-van-create" role="tab-panel" aria-labelledby="nav-van-create-tab">
+                    <div class="container" id="add-van-form-container">
+                        <form class="row g-3 needs-validation needs-validation" id="add-van-form" novalidate
+                            onsubmit="return false">
+                            <p class="h5">Create Van</p>
+                            <div class="input-group mb-3 form-label">
+                                <span class="input-group-text">brand:</span>
+                                <input id="add-van-input" type="text" class="form-control" placeholder="brand"
+                                    aria-label="add-van-brand" required>
+        
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">model:</span>
+                                <input id="add-van-input" type="text" class="form-control" placeholder="model"
+                                    aria-label="add-van-model" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">capacity:</span>
+                                <input id="add-van-input" type="number" class="form-control" placeholder="capacity"
+                                    aria-label="add-van-capacity" required>
+                            </div>
+                            <button onclick="return createVan()" class="btn btn-primary" type="submit">Create Van</button>
+                        </form>
+                    </div>
+                    <table class="table" id="add-van-view-all-table"></table>
+                </div>
+                <!-- DELETE -->
+                <div class="tab-pane fade" id="nav-van-delete" role="tab-panel" aria-labelledby="nav-van-delete-tab">
+                    <div id="delete-van-field">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">ID:</span>
+                            <input oninput="deleteVanPreview(document.getElementById('delete-van-id-input').value)" type="text"
+                                class="input" id="delete-van-id-input" placeholder="van id" aria-label="add-van-brand">
+                            <button onclick="deleteVan(document.getElementById('delete-van-id-input').value)">Delete</button>
+                        </div>
+                        <div class="container" id="delete-van-preview-field">
+                            <table class="table" id="delete-van-preview-table"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>              
         </div>
-
     </div>
-
-
-    
 </body>
 <!-- TEST -->
 
@@ -454,13 +584,15 @@
 <link rel="stylesheet" href="CSS/order-page.css">
 <link rel="stylesheet" href="CSS/product-table.css">
 <link rel="stylesheet" href="CSS/delivery-page.css">
+<link rel="stylesheet" href="CSS/van-page.css">
 <!-- JAVASCRIPT -->
 <script src="JS/app.js"></script>
 <script src="JS/table.js"></script>
 <script src="JS/repository.js"></script>
-<script src="JS/product-repository.js"></script>
 <script src="JS/delivery-repository.js"></script>
+<script src="JS/product-repository.js"></script>
 <script src="JS/order-repository.js"></script>
+<script src="JS/van-repository.js"></script>
 <script src="JS/patch-repository.js"></script>
 <script src="JS/post-repository.js"></script>
 <script src="JS/post-repository.js"></script>
