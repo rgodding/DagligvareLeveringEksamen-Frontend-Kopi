@@ -445,6 +445,8 @@
                     aria-controls="nav-van-create" area-selected="false">Create Van</a>
                 <a class="nav-link" id="nav-van-delete-tab" data-bs-toggle="tab" href="#nav-van-delete" role="tab"
                     aria-controls="nav-van-delete" area-selected="false">Delete Van</a>
+                <a class="nav-link" id="nav-van-add-delivery-tab" data-bs-toggle="tab" href="#nav-van-add-delivery" role="tab"
+                    aria-controls="nav-van-add-delivery" area-selected="false">Add Deliveries To Van</a>
             </nav>
             <!-- VAN INNER BODY -->
             <div class="tab-content" id="nav-tabContent-van">
@@ -471,8 +473,7 @@
                         <!-- VIEW ALL VAN TABLE -->
                         <table class="table table-hover" id="view-all-van-table"></table>
                     </div>
-                </div>
-                <div id="van-view-details">
+                    <div id="van-view-details">
                     <caption>VIEW VAN DETAILS</caption>
                     <div id="van-view-details-table-field">
                         <!-- TEMPORARY PRODUCT LIST FOR ORDER -->
@@ -511,6 +512,8 @@
                         </h4>
                     </div>
                 </div>
+                </div>
+                
                 <!-- EDIT -->
                 <div class="tab-pane fade" id="nav-van-edit" role="tab-panel" aria-labelledby="nav-van-edit-tab">
                     <!-- EDIT VAN FORM -->
@@ -599,6 +602,25 @@
                             <table class="table" id="delete-van-preview-table"></table>
                         </div>
                     </div>
+                </div>
+                <!-- ADD DELIVERIES TO VAN-->
+                <div class="tab-pane fade" id="nav-van-add-delivery" role="tab-panel" aria-labelledby="nav-van-add-delivery-tab">
+                    <form id="add-delivery-van-form-id-field">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">ID:</span>
+                            <input oninput="addDeliveryToVanPreview(document.getElementById('add-delivery-van-id-input').value, 'add-delivery-van-preview-table')" id="add-delivery-van-id-input" type="number" class="form-control" placeholder="id"
+                                    aria-label="add-delivery-van-id">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">DELIVERY ID:</span>
+                            <input oninput="addDeliveryToVanDeliveryPreview(document.getElementById('add-delivery-van-delivery-id-input').value, 'add-delivery-van-delivery-preview-table')" id="add-delivery-van-delivery-id-input" type="number" class="form-control" placeholder="id"
+                                    aria-label="add-delivery-van-delivery-id">
+                        </div>
+                        <button onclick="addDeliveryToVan(document.getElementById('add-delivery-van-id-input').value, document.getElementById('add-delivery-van-delivery-id-input').value)">Add</button>
+                    </form>
+                    <table id="add-delivery-van-delivery-preview-table"></table>
+                    <table id="add-delivery-van-preview-table"></table>
+                    <table id="add-delivery-van-preview-deliveries-table"></table>
                 </div>
             </div>              
         </div>

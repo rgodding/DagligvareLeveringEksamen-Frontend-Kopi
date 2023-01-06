@@ -38,6 +38,20 @@ function fetchNewestObject(type, productId, quantity){
     });
 
 }
+function fetchAllVanDeliveries(id, destination){
+  console.log('fetching all deliveries')
+  let type = 'delivery'
+  fetch(getLink(type) + '/find-deliveries-by-van-id/' + id)
+    .then((response) => response.json())
+    .then((object) => {
+      let html = "";
+      html += getTableHead(type);
+      object.forEach((object) => {
+        html += getTableBody(type, object);
+      });
+      document.getElementById(destination).innerHTML = html;
+    });
+}
 // Fetch
 function fetchObjectById(type, id, destination) {
   fetch(getLink(type) + "/" + id)
@@ -87,13 +101,26 @@ function postOrder(value) {
   };
   postObjectGetId('order', dataOrderObject)
 }
-
 function postProductToOrder(id, value){
   postProductToOrderFunction(id, generateObjectForObjectForm(value)) 
 }
 function postDeliveryToOrder(id, value){
   postDeliveryToOrderFunction(id, generateObjectForObjectForm(value))
 
+}
+function postVanToDelivery(id, value){
+  postVanToDeliveryFunction(id, generateObjectForObjectForm(value))
+}
+
+async function postVanToDeliveryFunction(id, formObject){
+  let response = await fetch(getLink('delivery') + '/add-van/' + id, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formObject),
+  });
 }
 async function postDeliveryToOrderFunction(id, formObject){
   let response = await fetch(getLink('order') + '/add-delivery/' + id, {

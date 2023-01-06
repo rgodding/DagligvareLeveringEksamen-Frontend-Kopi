@@ -103,3 +103,18 @@ function deleteVan(id){
 function deleteVanPreview(id){
   getObjectById('van', id, 'delete-van-preview-table')
 }
+
+
+// ADD DELIVERIES TO VAN
+function addDeliveryToVanPreview(id, destination){
+  fetchObjectById('van', id, destination)
+  setTimeout(() => {fetchAllVanDeliveries(id, 'add-delivery-van-preview-deliveries-table'); }, 500)
+}
+function addDeliveryToVanDeliveryPreview(id, destination){
+  fetchObjectById('delivery', id, destination)
+}
+function addDeliveryToVan(vanId, deliveryId){
+  console.log('van id(' + vanId + ')')
+  console.log('delivery id(' + deliveryId + ')')
+  postVanToDelivery(deliveryId, vanId)
+}
