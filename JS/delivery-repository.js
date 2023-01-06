@@ -22,6 +22,7 @@ function getTableBodyDelivery(object){
 }
 
 // EDIT DELIVERY
+// Public
 function editDeliveryPreview(id, destination){
   fetchObjectById('delivery', id, destination)
 }
@@ -37,14 +38,16 @@ function updateDeliveryValueAll(id, destination){
   setTimeout(() => {editDeliveryPreview(id, destination)}, 500)
   updateDeliveryRefreshInputAll()
 }
-function updateDeliveryRefreshInputAll(){
+// Private
+async function updateDeliveryRefreshInputAll(){
   updateDeliveryRefreshInput('deliveryDate')
   updateDeliveryRefreshInput('fromWarehouse')
   updateDeliveryRefreshInput('destination')
 }
-function updateDeliveryRefreshInput(field){
+async function updateDeliveryRefreshInput(field){
   document.getElementById('patch-delivery-' + field + '-input').value = ""
 }
+
 // ADD NEW DELIVERY
 function createDelivery(){
   let inputs = document.querySelectorAll('#add-delivery-input')
@@ -53,7 +56,7 @@ function createDelivery(){
   }
   setTimeout(() => { fetchAllObject('delivery', 'add-delivery-view-all-table'); }, 500)
 }
-function validateCreateDelivery(inputs){
+async function validateCreateDelivery(inputs){
   let result = true
   inputs.forEach((input) => {
     if(input.value === "" || input.value === null){
