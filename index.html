@@ -436,7 +436,7 @@
             <h3>VAN PAGE</h3>
             <!-- VAN NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a onclick="fetchAllVan('van', 'view-all-van-table')" class="nav-link active" id="nav-van-view-all-tab"
+                <a onclick="fetchAllObject('van', 'view-all-van-table')" class="nav-link active" id="nav-van-view-all-tab"
                     data-bs-toggle="tab" href="#nav-van-view-all" role="tab" aria-controls="nav-van-view-all"
                     area-selected="true">View All</a>
                 <a class="nav-link" id="nav-van-edit-tab" data-bs-toggle="tab" href="#nav-van-edit" role="tab"
@@ -458,7 +458,7 @@
                                 <span class="input-group-text">ID:</span>
                                 <input id="van-view-all-find-id-input" type="number" class="form-control" placeholder="id">
                                 <button
-                                    onclick="fetchVanById('van', document.getElementById('van-view-all-find-id-input').value, 'view-all-van-table')"
+                                    onclick="fetchObjectById('van', document.getElementById('van-view-all-find-id-input').value, 'view-all-van-table')"
                                     type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
                             </div>
                             <div id="van-view-all-input-field-brand" class="input-group input-group-sm col">

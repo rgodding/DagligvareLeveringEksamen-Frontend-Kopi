@@ -17,7 +17,7 @@ function getTableHeadVan(){
     `
 }
 function getTableBodyVan(object){
-    return `<tr>
+    return `<tr onclick="viewVanDetails(${object.id}, 'van-view-details-van-table-body')">
         <td>${object.id}</td>
         <td>${object.brand}</td>
         <td>${object.model}</td>
@@ -25,15 +25,7 @@ function getTableBodyVan(object){
     </tr>
     `
 }
-function getTableBodyVanDetail(object){
-  return `<tr onclick="viewVanDetails(${object.id}, 'van-view-details-van-table-body')">
-  <td>${object.id}</td>
-  <td>${object.brand}</td>
-  <td>${object.model} kr</td>
-  <td>${object.capacity} g</td>
-</tr>
-`
-}
+
 
 // VAN DETAILS
 function viewVanDetails(id, destination){
@@ -93,7 +85,7 @@ function createVan(){
   if(validateCreateVan(inputs)){
     post('van', inputs)
   }
-  setTimeout(() => { getAllObject('van', 'add-van-view-all-table'); }, 500)
+  setTimeout(() => { fetchAllObject('van', 'add-van-view-all-table'); }, 500)
 }
 function validateCreateVan(inputs){
   let result = true

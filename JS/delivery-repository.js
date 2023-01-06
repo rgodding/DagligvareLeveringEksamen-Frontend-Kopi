@@ -51,7 +51,7 @@ function createDelivery(){
   if(validateCreateDelivery(inputs)){
     post('delivery', inputs)
   }
-  setTimeout(() => { getAllObject('delivery', 'add-delivery-view-all-table'); }, 500)
+  setTimeout(() => { fetchAllObject('delivery', 'add-delivery-view-all-table'); }, 500)
 }
 function validateCreateDelivery(inputs){
   let result = true

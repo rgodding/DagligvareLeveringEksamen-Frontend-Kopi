@@ -1,30 +1,3 @@
-// VIEW ALL
-function getAllObject(type, destination){
-  fetchAllObject(type, destination)
-}
-// VIEW
-function getObjectById(type, id, destination){
-  fetchObjectById(type, id, destination)
-}
-
-function getObjectByName(type, name, destination){
-  fetchObjectByName(type, name, destination)
-}
-function productViewAllFindByName(input){
-  if(input == ""){
-    getAllObject('product', 'view-all-product-table')
-  } else {
-    fetchAllObjectContaining('product', 'name', input, 'view-all-product-table')
-  }
-
-}
-// EDIT
-function updateObject(){}
-// CREATE
-function postObject(){}
-// DELETE
-function deleteObject(){}
-
 function getLink(type){
   switch(type){
     case "delivery":

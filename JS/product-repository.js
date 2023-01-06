@@ -74,7 +74,7 @@ function createProduct(){
   if(validateCreateProduct(inputs)){
     post('product', inputs)
   }
-  setTimeout(() => { getAllObject('product', 'add-product-view-all-table'); }, 500)
+  setTimeout(() => { fetchAllObject('product', 'add-product-view-all-table'); }, 500)
 }
 function validateCreateProduct(inputs){
   let result = true

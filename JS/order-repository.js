@@ -103,7 +103,7 @@ function createOrder(){
   if(validateCreateOrder(inputs)){
     post('order', inputs)
   }
-  setTimeout(() => { getAllObject('order', 'add-order-view-all-table'); }, 500)
+  setTimeout(() => { fetchAllObject('order', 'add-order-view-all-table'); }, 500)
 }
 function createOrderWithProducts(id, quantity){
   postOrder(quantity)

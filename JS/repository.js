@@ -11,18 +11,6 @@ function fetchAllObject(type, destination) {
       document.getElementById(destination).innerHTML = html;
     });
 }
-function fetchAllObject2(type, destination, type2) {
-  fetch(getLink(type))
-    .then((response) => response.json())
-    .then((object) => {
-      let html = "";
-      html += getTableHead(type);
-      object.forEach((object) => {
-        html += getTableBody(type2, object);
-      });
-      document.getElementById(destination).innerHTML = html;
-    });
-}
 function fetchAllObjectContaining(type, field, input, destination){
   fetch(getLink(type) + '/find-all-by-name/' + input)
   .then((response) => response.json())
