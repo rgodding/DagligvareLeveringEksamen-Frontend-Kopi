@@ -26,7 +26,6 @@ function getTableBodyVan(object){
     `
 }
 
-
 // VAN DETAILS
 function viewVanDetails(id, destination){
   viewVanDetailsVan(id, destination) 

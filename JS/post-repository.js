@@ -37,17 +37,11 @@ function generateForm(type, input) {
         };
         return dataVanObject;
     }
-  }
+}
 
-  function generateProductforOrderForm(value){
-    const productForOrderObject = {
-      id: value,
-    }
-    return productForOrderObject
+function generateObjectForObjectForm(value){
+  const objectForObject = {
+    id: value,
   }
-  function generateDeliveryforOrderForm(value){
-    const deliveryForOrderObject = {
-      id: value,
-    }
-    return deliveryForOrderObject
-  }
+  return objectForObject
+}

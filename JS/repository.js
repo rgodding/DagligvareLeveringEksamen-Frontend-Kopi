@@ -87,11 +87,12 @@ function postOrder(value) {
   };
   postObjectGetId('order', dataOrderObject)
 }
+
 function postProductToOrder(id, value){
-  postProductToOrderFunction(id, generateProductforOrderForm(value)) 
+  postProductToOrderFunction(id, generateObjectForObjectForm(value)) 
 }
 function postDeliveryToOrder(id, value){
-  postDeliveryToOrderFunction(id, generateDeliveryforOrderForm(value))
+  postDeliveryToOrderFunction(id, generateObjectForObjectForm(value))
 
 }
 async function postDeliveryToOrderFunction(id, formObject){
