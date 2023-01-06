@@ -2,12 +2,6 @@
 function getAllObject(type, destination){
   fetchAllObject(type, destination)
 }
-function getAllObject2(type, destination){
-  console.log('getall 2(' + type + ')')
-  let type2 = '' + type + '-view-all'
-  fetchAllObject2(type, destination, type2)
-
-}
 // VIEW
 function getObjectById(type, id, destination){
   fetchObjectById(type, id, destination)

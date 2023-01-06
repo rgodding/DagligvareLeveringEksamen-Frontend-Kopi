@@ -28,7 +28,7 @@
             <h3>DELIVERY PAGE</h3>
             <!-- DELIVERY NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a onclick="getAllObject('delivery', 'view-all-delivery-table')" class="nav-link active" id="nav-delivery-view-all-tab" data-bs-toggle="tab" href="#nav-delivery-view-all" role="tab" aria-controls="nav-delivery-view-all" area-selected="true">View All</a>
+                <a onclick="fetchAllObject('delivery', 'view-all-delivery-table')" class="nav-link active" id="nav-delivery-view-all-tab" data-bs-toggle="tab" href="#nav-delivery-view-all" role="tab" aria-controls="nav-delivery-view-all" area-selected="true">View All</a>
                 <a class="nav-link" id="nav-delivery-edit-tab" data-bs-toggle="tab" href="#nav-delivery-edit" role="tab" aria-controls="nav-delivery-edit" area-selected="false">Edit Delivery</a>
                 <a class="nav-link" id="nav-delivery-create-tab" data-bs-toggle="tab" href="#nav-delivery-create" role="tab" aria-controls="nav-delivery-create" area-selected="false">Create Delivery</a>
                 <a class="nav-link" id="nav-delivery-delete-tab" data-bs-toggle="tab" href="#nav-delivery-delete" role="tab" aria-controls="nav-delivery-delete" area-selected="false">Delete Delivery</a>
@@ -43,7 +43,7 @@
                             <div id="delivery-view-all-input-field-id" class="input-group col">
                                 <span class="input-group-text">ID:</span>
                                 <input id="delivery-view-all-find-id-input" type="number" class="form-control" placeholder="id">
-                                <button onclick="getObjectById('delivery', document.getElementById('delivery-view-all-find-id-input').value, 'view-all-delivery-table')" type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
+                                <button onclick="fetchObjectById('delivery', document.getElementById('delivery-view-all-find-id-input').value, 'view-all-delivery-table')" type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
                             </div>
                             <div id="delivery-view-all-input-field-deliveryDate" class="input-group input-group-sm col">
                                 <span class="input-group-text">DELIVERY DATE:</span>
@@ -146,7 +146,7 @@
             <h3>PRODUCT PAGE</h3>
             <!-- PRODUCT NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a onclick="getAllObject2('product', 'view-all-product-table')" class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
+                <a onclick="fetchAllObject('product', 'view-all-product-table')" class="nav-link active" id="nav-product-view-all-tab" data-bs-toggle="tab" href="#nav-product-view-all" role="tab" aria-controls="nav-product-view-all" area-selected="true">View All</a>
                 <a class="nav-link" id="nav-product-edit-tab" data-bs-toggle="tab" href="#nav-product-edit" role="tab" aria-controls="nav-product-edit" area-selected="false">Edit Product</a>
                 <a class="nav-link" id="nav-product-create-tab" data-bs-toggle="tab" href="#nav-product-create" role="tab" aria-controls="nav-product-create" area-selected="false">Create Product</a>
                 <a class="nav-link" id="nav-product-delete-tab" data-bs-toggle="tab" href="#nav-product-delete" role="tab" aria-controls="nav-product-delete" area-selected="false">Delete Product</a>
@@ -161,7 +161,7 @@
                             <div id="product-view-all-input-field-id" class="input-group col">
                                 <span class="input-group-text">ID:</span>
                                 <input id="product-view-all-find-id-input" type="number" class="form-control" placeholder="id">
-                                <button onclick="getObjectById('product', document.getElementById('product-view-all-find-id-input').value, 'view-all-product-table')" type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
+                                <button onclick="fetchObjectById('product', document.getElementById('product-view-all-find-id-input').value, 'view-all-product-table')" type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
                             </div>
                             <div id="product-view-all-input-field-name" class="input-group input-group-sm col">
                                 <span class="input-group-text">NAME:</span>
@@ -288,7 +288,7 @@
             <h3>ORDER PAGE</h3>
             <!-- ORDER NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a onclick="getAllObject('order', 'view-all-order-table')" class="nav-link active" id="nav-order-view-all-tab"
+                <a onclick="fetchAllObject('order', 'view-all-order-table')" class="nav-link active" id="nav-order-view-all-tab"
                     data-bs-toggle="tab" href="#nav-order-view-all" role="tab" aria-controls="nav-order-view-all"
                     area-selected="true">View All</a>
                 <a class="nav-link" id="nav-order-edit-tab" data-bs-toggle="tab" href="#nav-order-edit" role="tab"
@@ -310,7 +310,7 @@
                                 <span class="input-group-text">ID:</span>
                                 <input id="order-view-all-find-id-input" type="number" class="form-control" placeholder="id">
                                 <button
-                                    onclick="getObjectById('order', document.getElementById('order-view-all-find-id-input').value, 'view-all-order-table')"
+                                    onclick="fetchObjectById('order', document.getElementById('order-view-all-find-id-input').value, 'view-all-order-table')"
                                     type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
                             </div>
                             <div id="order-view-all-input-field-quantity" class="input-group input-group-sm col">
@@ -436,7 +436,7 @@
             <h3>VAN PAGE</h3>
             <!-- VAN NAVBAR -->
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a onclick="getAllObject2('van', 'view-all-van-table')" class="nav-link active" id="nav-van-view-all-tab"
+                <a onclick="fetchAllVan('van', 'view-all-van-table')" class="nav-link active" id="nav-van-view-all-tab"
                     data-bs-toggle="tab" href="#nav-van-view-all" role="tab" aria-controls="nav-van-view-all"
                     area-selected="true">View All</a>
                 <a class="nav-link" id="nav-van-edit-tab" data-bs-toggle="tab" href="#nav-van-edit" role="tab"
@@ -458,7 +458,7 @@
                                 <span class="input-group-text">ID:</span>
                                 <input id="van-view-all-find-id-input" type="number" class="form-control" placeholder="id">
                                 <button
-                                    onclick="getObjectById('van', document.getElementById('van-view-all-find-id-input').value, 'view-all-van-table')"
+                                    onclick="fetchVanById('van', document.getElementById('van-view-all-find-id-input').value, 'view-all-van-table')"
                                     type="button" class="btn btn-primary" id="input-group-button-right">Find</button>
                             </div>
                             <div id="van-view-all-input-field-brand" class="input-group input-group-sm col">

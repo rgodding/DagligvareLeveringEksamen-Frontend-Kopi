@@ -1,5 +1,10 @@
 const vanApi = "http://localhost:8080/api/v1/van";
 
+function fetchAllVan(type, destination){
+  let type2 = '' + type + '-view-all'
+  fetchAllObject2(type, destination, type2)
+}
+
 function getTableHeadVan(){
     return `<thead>
         <tr>
