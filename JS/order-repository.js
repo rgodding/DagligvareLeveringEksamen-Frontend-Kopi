@@ -77,6 +77,11 @@ function createOrder(){
   }
   setTimeout(() => { fetchAllObject('order', 'add-order-view-all-table'); }, 500)
 }
+function createOrderWithProducts(id, quantity){
+  postOrder(quantity)
+  setTimeout(() => {fetchNewestObject('order', id, quantity)}, 2000)
+  console.log('done?')
+}
 function validateCreateOrder(inputs){
   let result = true
   inputs.forEach((input) => {

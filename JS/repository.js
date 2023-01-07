@@ -59,10 +59,15 @@ function patch(type, field, id, value) {
     body: generatePatchBody(type, field, value),
   });
 }
-
 // Create
 function post(type, input){
   postObject(type, generateForm(type, input))
+}
+function postOrder(value) {
+  const dataOrderObject = {
+    quantity: value,
+  };
+  postObjectGetId('order', dataOrderObject)
 }
 function postProductToOrder(id, value){
   postProductToOrderFunction(id, generateObjectForObjectForm(value)) 
@@ -104,6 +109,18 @@ async function postProductToOrderFunction(id, formObject){
   });
 }
 async function postObject(type, formObject) {
+  console.log('posting object(' + type + ')')
+  console.log('object(' + formObject + ')')
+  let response = await fetch(getLink(type), {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formObject),
+  });
+}
+async function postObjectGetId(type, formObject) {
   console.log('posting object(' + type + ')')
   console.log('object(' + formObject + ')')
   let response = await fetch(getLink(type), {
