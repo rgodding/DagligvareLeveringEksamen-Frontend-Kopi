@@ -15,9 +15,9 @@ function generatePatchBody(type, field, value) {
 
 function generateDeliveryPatchBody(field, value){
   switch (field) {
-      case "destination":
+      case "deliveryDate":
         return JSON.stringify({
-          destination: value,
+          deliveryDate: value,
         });
       case "fromWarehouse":
         return JSON.stringify({

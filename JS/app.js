@@ -1,3 +1,49 @@
+// get all
+function fetchAllDelivery(destination){
+  fetchAllObject('delivery', destination)
+}
+function fetchAllVan(destination){
+  fetchAllObject('van', destination)
+}
+function fetchAllProduct(destination){
+  fetchAllObject('product', destination)
+}
+function fetchAllOrder(destination){
+  fetchAllObject('order', destination)
+}
+
+// get
+function fetchDeliveryById(id, destination){
+  fetchObjectById('delivery', id, destination)
+}
+function fetchVanById(id, destination){
+  fetchObjectById('van', id, destination)
+}
+function fetchProductById(id, destination){
+  fetchObjectById('product', id, destination)
+}
+function fetchProductByName(name, destination){
+  fetchAllObjectWithName('product', name, destination)
+}
+function fetchOrderById(id, destination){
+  fetchObjectById('order', id, destination)
+}
+
+// delete
+function deleteDelivery(id){
+  deleteObject('delivery', id)
+}
+function deleteVan(id){
+  deleteObject('van', id)
+}
+function deleteProduct(id){
+  deleteObject('product', id)
+}
+function deleteOrder(id){
+  deleteObject('order', id)
+}
+
+// Get Links
 function getLink(type){
   switch(type){
     case "delivery":
@@ -11,17 +57,7 @@ function getLink(type){
   }
 }
 
-function templateSwith(){
-  switch(type){
-    case "delivery":
-    case "product":
-    case "order":
-    case "van":
-  }
-}
-
-
-
+/*
 (function () {
   'use strict'
 
@@ -41,10 +77,12 @@ function templateSwith(){
       }, false)
     })
 })()
+*/
 
 document.getElementById('patch-delivery-form').addEventListener("click", function(event){
   event.preventDefault()
 })
+
 document.getElementById('patch-product-form').addEventListener("click", function(event){
     event.preventDefault()
 })

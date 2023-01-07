@@ -44,23 +44,28 @@ function getTableBodyProductForOrder(object){
 }
 
 // EDIT PRODUCT
-// public
-function editProductPreview(id, destination){
-  fetchObjectById('product', id, destination)
-}
-function updateProductValue(field, value, id, destination){
-  patch('product', field, id, value)
-  setTimeout(() => {editProductPreview(id, destination)}, 500)
-  updateProductRefreshInput(field)
+function updateProductValue(field, value, id, destination) {
+  if (value != "") {
+    patch("product", field, id, value);
+    setTimeout(() => {
+      fetchProductById(id, destination);
+    }, 500);
+    updateProductRefreshInput(field);
+  }
 }
 function updateProductValueAll(id, destination){
-  patch('product', 'name', id, document.getElementById('patch-product-name-input').value)
-  patch('product', 'price', id, document.getElementById('patch-product-price-input').value)
-  patch('product', 'weight', id, document.getElementById('patch-product-weight-input').value)
-  setTimeout(() => {editProductPreview(id, destination)}, 500)
+  if(document.getElementById('patch-product-name-input').value != ""){
+    patch('product', 'name', id, document.getElementById('patch-product-name-input').value)
+  }
+  if(document.getElementById('patch-product-price-input').value != ""){
+    patch('product', 'price', id, document.getElementById('patch-product-price-input').value)
+  }
+  if(document.getElementById('patch-product-weight-input').value != ""){
+    patch('product', 'weight', id, document.getElementById('patch-product-weight-input').value)
+  }
+  setTimeout(() => {fetchProductById(id, destination)}, 500)
   updateProductRefreshInputAll()
 }
-// private
 async function updateProductRefreshInputAll(){
   updateProductRefreshInput('name')
   updateProductRefreshInput('price')
@@ -71,7 +76,6 @@ async function updateProductRefreshInput(field){
 }
 
 // ADD NEW PRODUCT
-// public
 function createProduct(){
   let inputs = document.querySelectorAll('#add-product-input')
   if(validateCreateProduct(inputs)){
@@ -79,7 +83,6 @@ function createProduct(){
   }
   setTimeout(() => { fetchAllObject('product', 'add-product-view-all-table'); }, 500)
 }
-// private
 async function validateCreateProduct(inputs){
   let result = true
   inputs.forEach((input) => {
@@ -90,16 +93,7 @@ async function validateCreateProduct(inputs){
   return result
 }
 
-// DELETE PRODUCT
-function deleteProduct(id){
-  deleteObject('product', id)
-}
-function deleteProductPreview(id){
-  getObjectById('product', id, 'delete-product-preview-table')
-}
-
 // ADD PRODUCT TO ORDER LIST FUNCTIONS
-// public
 function addProductToOrderList(id, destination) {
   let productId = document.querySelectorAll(".product-for-order-id");
   let exists = false;
@@ -128,7 +122,6 @@ function addProductToOrderList(id, destination) {
 function productCreateOrder(quantity, id){
   createOrderWithProducts(id, quantity)
 }
-// private
 async function updateOrderListValues(id){
   let quantity = parseInt(document.getElementById('product-for-order-quantity-' + id).value)
   let price = parseInt(document.getElementById('product-for-order-price-' + id).innerText)

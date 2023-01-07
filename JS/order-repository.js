@@ -15,7 +15,6 @@ function getTableBodyOrder(object){
     let result = `<tr>
         <td>${object.id}</td>
         <td>${object.quantity}</td>`
-        
         if(object.product != null){
           result +=`
           <td>${object.product.name}</td>
@@ -40,15 +39,6 @@ function getTableBodyOrder(object){
         return result
 }
 // EDIT ORDER
-function editOrderPreview(id, destination){
-  fetchObjectById('order', id, destination)
-}
-function editOrderProductPreview(id, destination){
-  fetchObjectById('product', id, destination)
-}
-function editOrderDeliveryPreview(id, destination){
-  fetchObjectById('delivery', id, destination)
-}
 function updateOrderValue(field, value, id, destination){
   switch (field) {
     case "quantity":
@@ -61,40 +51,22 @@ function updateOrderValue(field, value, id, destination){
       postDeliveryToOrder(id, value);
       break;
   }
-  setTimeout(() => {editOrderPreview(id, destination)}, 500)
-  updateOrderRefreshInput(field)
-}
-function updateOrderValue2(field, value, id, destination){
-  switch (field) {
-    case "quantity":
-      patch("order", field, id, value);
-      break;
-    case "product":
-      postProductToOrder(id, value);
-      break;
-    case "delivery":
-      postDeliveryToOrder(id, value);
-      break;
-  }
-  setTimeout(() => {editOrderPreview(id, destination)}, 500)
+  setTimeout(() => {fetchOrderById(id, destination)}, 500)
   updateOrderRefreshInput(field)
 }
 function updateOrderValueAll(id, delivery){
-  patchOrder('order', 'quantity', id, document.getElementById('patch-order-quantity-input').value)
-  patchOrder('order', 'product', id, document.getElementById('patch-order-product-id-input').value)
-  patchOrder('order', 'delivery', id, document.getElementById('patch-order-delivery-id-input').value)
-  setTimeout(() => {editOrderPreview(id, delivery)}, 500)
-  updateOrderRefreshInputAll()
+  patch('order', 'quantity', id, document.getElementById('patch-order-quantity-input').value)
+  setTimeout(() => {postProductToOrder(id, document.getElementById('patch-order-product-input').value)}, 250)
+  setTimeout(() => {postDeliveryToOrder(id, document.getElementById('patch-order-delivery-input').value)}, 500)
+  setTimeout(() => {fetchOrderById(id, delivery)}, 750)
+  setTimeOut(() => {updateOrderRefreshInputAll()}, 1000)
 }
-function updateOrderRefreshInputAll(){
+async function updateOrderRefreshInputAll(){
   updateOrderRefreshInput('quantity')
   updateOrderRefreshInput('product')
   updateOrderRefreshInput('delivery')
 }
-function updateOrderRefreshInput(field){
-  if(field == "product" || field == "delivery")[
-    field += "-id"
-  ]
+async function updateOrderRefreshInput(field){
   document.getElementById('patch-order-' + field + '-input').value = ""
 }
 // ADD NEW ORDER
@@ -105,14 +77,6 @@ function createOrder(){
   }
   setTimeout(() => { fetchAllObject('order', 'add-order-view-all-table'); }, 500)
 }
-function createOrderWithProducts(id, quantity){
-  postOrder(quantity)
-  setTimeout(() => {fetchNewestObject('order', id, quantity)}, 2000)
-  console.log('done?')
-
-
-  
-}
 function validateCreateOrder(inputs){
   let result = true
   inputs.forEach((input) => {
@@ -121,11 +85,4 @@ function validateCreateOrder(inputs){
     }
   })
   return result
-}
-// DELETE ORDER
-function deleteOrder(id){
-  deleteObject('order', id)
-}
-function deleteOrderPreview(id){
-  getObjectById('order', id, 'delete-order-preview-table')
 }

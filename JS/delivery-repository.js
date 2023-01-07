@@ -22,23 +22,27 @@ function getTableBodyDelivery(object){
 }
 
 // EDIT DELIVERY
-// Public
-function editDeliveryPreview(id, destination){
-  fetchObjectById('delivery', id, destination)
-}
 function updateDeliveryValue(field, value, id, destination){
+  if(value != ""){
   patch('delivery', field, id, value)
-  setTimeout(() => {editDeliveryPreview(id, destination)}, 500)
+  setTimeout(() => {fetchDeliveryById(id, destination)}, 500)
   updateDeliveryRefreshInput(field)
+  }
 }
 function updateDeliveryValueAll(id, destination){
+  if(document.getElementById('patch-delivery-deliveryDate-input').value != ""){
   patch('delivery', 'deliveryDate', id, document.getElementById('patch-delivery-deliveryDate-input').value)
-  patch('delivery', 'fromWarehouse', id, document.getElementById('patch-delivery-fromWarehouse-input').value)
-  patch('delivery', 'destination', id, document.getElementById('patch-delivery-destination-input').value)
-  setTimeout(() => {editDeliveryPreview(id, destination)}, 500)
+  }
+  if(document.getElementById('patch-delivery-fromWarehouse-input').value != ""){
+    patch('delivery', 'fromWarehouse', id, document.getElementById('patch-delivery-fromWarehouse-input').value)
+  }
+  if(document.getElementById('patch-delivery-destination-input').value != ""){
+    patch('delivery', 'destination', id, document.getElementById('patch-delivery-destination-input').value)
+  }
+  
+  setTimeout(() => {fetchDeliveryById(id, destination)}, 500)
   updateDeliveryRefreshInputAll()
 }
-// Private
 async function updateDeliveryRefreshInputAll(){
   updateDeliveryRefreshInput('deliveryDate')
   updateDeliveryRefreshInput('fromWarehouse')
@@ -64,12 +68,4 @@ async function validateCreateDelivery(inputs){
     }
   })
   return result
-}
-
-// DELETE DELIVERY
-function deleteDelivery(id){
-  deleteObject('delivery', id)
-}
-function deleteDeliveryPreview(id){
-  getObjectById('delivery', id, 'delete-delivery-preview-table')
 }
