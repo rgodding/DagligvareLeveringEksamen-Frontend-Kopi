@@ -4,6 +4,7 @@ let totalWeight
 let totalVanPrice
 let totalVanWeight
 
+// Calculate Van (Specifically for view Details)
 function calculateVan(id){
     totalVanPrice = 0
     totalVanWeight = 0
@@ -31,7 +32,6 @@ function calculateVan(id){
         })
     }, 500)
 }
-
 function validateVanCapacity(object){
     document.getElementById('van-view-details-total-price').innerHTML = totalVanPrice
     document.getElementById('van-view-details-total-weight').innerHTML = totalVanWeight
