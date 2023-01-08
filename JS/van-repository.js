@@ -21,10 +21,16 @@ function getTableBodyVan(object){
     `
 }
 
+// WORKBENCH
+function calculateVanWeightAndPrice(id){
+  calculateVan(id)
+}
+
 // VAN DETAILS
 function viewVanDetails(id, destination){
   viewVanDetailsVan(id, destination) 
   viewVanDetailsDeliveries(id) 
+  calculateVanWeightAndPrice(id)
 }
 function viewVanDetailsVan(id, destination){
   fetch(getLink("van") + "/" + id)

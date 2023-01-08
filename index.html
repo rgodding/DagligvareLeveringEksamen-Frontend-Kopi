@@ -166,8 +166,8 @@
                     <h3>Delivery's Orders</h3>
                     <table class="table table-hover" id="manage-delivery-orders-table"></table>
 
-                    <h6>Total Price: <span>0</span>kr</h6>
-                    <h6>Total Weight: <span>0</span>g</h6>
+                    <h6>Total Price: <span id="manage-delivery-total-price">0</span>kr</h6>
+                    <h6>Total Weight: <span id="manage-delivery-total-weight">0</span>g</h6>
                     <h3>All Orders</h3>
                     <span>ID: </span><input id="delivery-manage-find-order-id-input">
                     <button onclick="addOrderToDelivery(document.getElementById('delivery-manage-find-id-input').value, document.getElementById('delivery-manage-find-order-id-input').value, 'manage-delivery-table', 'manage-delivery-orders-table')">Add To Order</button>
@@ -681,6 +681,7 @@
 <link rel="stylesheet" href="CSS/delivery-page.css">
 <link rel="stylesheet" href="CSS/van-page.css">
 <!-- JAVASCRIPT -->
+<script src="JS/test.js"></script>
 <script src="JS/app.js"></script>
 <script src="JS/table.js"></script>
 <script src="JS/repository.js"></script>

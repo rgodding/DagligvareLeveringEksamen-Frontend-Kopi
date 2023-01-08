@@ -22,8 +22,13 @@ function fetchAllOrder(destination){
 function fetchDeliveryById(id, destination){
   fetchObjectById('delivery', id, destination)
 }
+// WORKING ON
 function fetchDeliveryByIdAndOrders(id, deliveryDestination, ordersDestination){
   fetchObjectById('delivery', id, deliveryDestination)
+  // Improve later
+  getDeliveryTotalPrice(id, 'manage-delivery-total-price')
+  getDeliveryTotalWeight(id, 'manage-delivery-total-weight')
+
   fetchAllDeliveryOrders(id, ordersDestination)
 }
 function fetchVanById(id, destination){
