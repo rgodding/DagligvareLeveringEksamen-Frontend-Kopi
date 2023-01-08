@@ -32,6 +32,7 @@
                 <a class="nav-link" id="nav-delivery-edit-tab" data-bs-toggle="tab" href="#nav-delivery-edit" role="tab" aria-controls="nav-delivery-edit" area-selected="false">Edit Delivery</a>
                 <a class="nav-link" id="nav-delivery-create-tab" data-bs-toggle="tab" href="#nav-delivery-create" role="tab" aria-controls="nav-delivery-create" area-selected="false">Create Delivery</a>
                 <a class="nav-link" id="nav-delivery-delete-tab" data-bs-toggle="tab" href="#nav-delivery-delete" role="tab" aria-controls="nav-delivery-delete" area-selected="false">Delete Delivery</a>
+                <a onclick="fetchAllObject('order', 'manage-delivery-all-orders-table')" class="nav-link" id="nav-delivery-manage-tab" data-bs-toggle="tab" href="#nav-delivery-manage" role="tab" aria-controls="nav-delivery-manage" area-selected="false">Manage Delivery</a>
             </nav>
             <!-- DELIVERY INNER BODY -->
             <div class="tab-content" id="nav-tabContent-delivery">
@@ -149,6 +150,29 @@
                             <table class="table" id="delete-delivery-preview-table"></table>
                         </div>
                     </div>
+                </div>
+                <!-- MANAGE DELIVERY -->
+                <div class="tab-pane fade" id="nav-delivery-manage" role="tab-panel" aria-labelledby="nav-delivery-manage-tab">
+                    <h3>Manage Delivery</h3>
+                    <div class="row" id="delivery-view-all-input-field">
+                        <div id="delivery-manage-input-field-id" class="input-group col">
+                            <span class="input-group-text">ID:</span>
+                            <input oninput="fetchDeliveryByIdAndOrders(document.getElementById('delivery-manage-find-id-input').value, 'manage-delivery-table', 'manage-delivery-orders-table')" 
+                            id="delivery-manage-find-id-input" type="number" class="form-control" placeholder="id">
+                        </div>
+                    </div>
+                    <h3>Delivery</h3>
+                    <table class="table table-hover" id="manage-delivery-table"></table>
+                    <h3>Delivery's Orders</h3>
+                    <table class="table table-hover" id="manage-delivery-orders-table"></table>
+
+                    <h6>Total Price: <span>0</span>kr</h6>
+                    <h6>Total Weight: <span>0</span>g</h6>
+                    <h3>All Orders</h3>
+                    <span>ID: </span><input id="delivery-manage-find-order-id-input">
+                    <button onclick="addOrderToDelivery(document.getElementById('delivery-manage-find-id-input').value, document.getElementById('delivery-manage-find-order-id-input').value, 'manage-delivery-table', 'manage-delivery-orders-table')">Add To Order</button>
+                    <table class="table table-hover" id="manage-delivery-all-orders-table"></table>
+
                 </div>
             </div>
         </div>

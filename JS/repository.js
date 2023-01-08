@@ -38,6 +38,22 @@ function fetchAllVanDeliveries(id, destination){
       document.getElementById(destination).innerHTML = html;
     });
 }
+function fetchAllDeliveryOrders(id, destination){
+  console.log('fetching all orders for delivery(' + id + ')')
+  console.log('fetching all deliveries')
+  let type = 'order'
+  fetch(getLink(type) + '/find-order-by-delivery-id/' + id)
+    .then((response) => response.json())
+    .then((object) => {
+      let html = "";
+      html += getTableHead(type);
+      object.forEach((object) => {
+        html += getTableBody(type, object);
+      });
+      document.getElementById(destination).innerHTML = html;
+    });
+}
+
 // Fetch
 function fetchObjectById(type, id, destination) {
   fetch(getLink(type) + "/" + id)

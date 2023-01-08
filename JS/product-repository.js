@@ -130,5 +130,3 @@ async function updateOrderListValues(id){
   document.getElementById('product-create-order-total-price').innerText = (price*quantity) + "kr"
   document.getElementById('product-create-order-total-weight').innerText = (weight*quantity) + "g"
 }
-
-

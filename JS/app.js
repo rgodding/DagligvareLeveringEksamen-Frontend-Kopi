@@ -1,3 +1,9 @@
+// Workbench
+function addOrderToDelivery(deliveryId, orderId, deliveryDestination, ordersDestination){
+  postDeliveryToOrder(orderId, deliveryId)
+  setTimeout(() => { fetchDeliveryByIdAndOrders(deliveryId, deliveryDestination, ordersDestination); }, 500)
+}
+
 // get all
 function fetchAllDelivery(destination){
   fetchAllObject('delivery', destination)
@@ -15,6 +21,10 @@ function fetchAllOrder(destination){
 // get
 function fetchDeliveryById(id, destination){
   fetchObjectById('delivery', id, destination)
+}
+function fetchDeliveryByIdAndOrders(id, deliveryDestination, ordersDestination){
+  fetchObjectById('delivery', id, deliveryDestination)
+  fetchAllDeliveryOrders(id, ordersDestination)
 }
 function fetchVanById(id, destination){
   fetchObjectById('van', id, destination)
