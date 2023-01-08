@@ -1,43 +1,55 @@
 const orderApi = "http://localhost:8080/api/v1/order";
 
 function getTableHeadOrder(){
-    return `<thead>
-        <tr>
-            <th class="order-table-head-id">ID</th>
-            <th class="order-table-head-quantity">QUANTITY</th>
-            <th class="order-table-head-product">PRODUCT</th>
-            <th class="order-table-head-delivery">DELIVERY</th>
-        </tr>
-    </thead>
-    `
+  return `<thead>
+      <tr>
+          <th class="order-table-head-id">ID</th>
+          <th class="order-table-head-quantity">QUANTITY</th>
+          <th class="order-table-head-product">PRODUCT</th>
+          <th class="order-table-head-delivery">DELIVERY</th>
+          <th class="order-table-head-price">PRICE</th>
+          <th class="order-table-head-delivery">WEIGHT</th>
+      </tr>
+  </thead>
+  `
 }
 function getTableBodyOrder(object){
-    let result = `<tr>
-        <td>${object.id}</td>
-        <td>${object.quantity}</td>`
-        if(object.product != null){
-          result +=`
-          <td>${object.product.name}</td>
-          `
-        } else {
-          result +=`
-          <td>NO PRODUCT ASSIGNED</td>
-          `
-        }
-        if(object.delivery != null){
-          result +=`
-          <td>DATE: ${object.delivery.deliveryDate} Destination: ${object.delivery.destination}</td>
-          `
-        } else {
-          result +=`
-          <td>NO DELIVERY ASSIGNED</td>
-          `
-        }
-        result += `
-        </tr>
+  let weight = 0
+  let price = 0
+  if(object.product != null){
+      weight = object.product.weight
+      price = object.product.price
+  }
+  let result = `<tr>
+      <td>${object.id}</td>
+      <td>${object.quantity}</td>`
+      if(object.product != null){
+        result +=`
+        <td>${object.product.name}</td>
         `
-        return result
+      } else {
+        result +=`
+        <td>NO PRODUCT ASSIGNED</td>
+        `
+      }
+      if(object.delivery != null){
+        result +=`
+        <td>DATE: ${object.delivery.deliveryDate} Destination: ${object.delivery.destination}</td>
+        `
+      } else {
+        result +=`
+        <td>NO DELIVERY ASSIGNED</td>
+        `
+      }
+     
+      result += `
+      <td>${price*object.quantity} kr</td>
+      <td>${weight*object.quantity} g</td>
+      </tr>
+      `
+      return result
 }
+
 // EDIT ORDER
 function updateOrderValue(field, value, id, destination){
   switch (field) {

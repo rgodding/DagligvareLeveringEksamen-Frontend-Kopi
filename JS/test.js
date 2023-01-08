@@ -1,10 +1,8 @@
 let totalPrice
 let totalWeight
 
-
 let totalVanPrice
 let totalVanWeight
-
 
 function calculateVan(id){
     totalVanPrice = 0
@@ -12,29 +10,41 @@ function calculateVan(id){
     fetch(getLink('delivery') + '/find-deliveries-by-van-id/' + id)
     .then((reponse) => reponse.json())
     .then((object) => {
-        // Delivery List
         object.forEach((object) => {
-            // For Each Delivery
             fetch(getLink("order") + "/find-order-by-delivery-id/" + object.id)
             .then((reponse) => reponse.json())
             .then((object) => {
-                // Order for current delivery List
                 object.forEach((object) => {
-                //current order
-                let orderQuantity = object.quantity
-                let orderPrice = object.product.price
-                let orderWeight = object.product.weight
-                totalVanPrice += orderQuantity*orderPrice
-                totalVanWeight += orderQuantity*orderWeight
+                totalVanPrice += object.quantity*object.product.price
+                totalVanWeight += object.quantity*object.product.weight
               });
             });
         });
         
     })
-    setTimeout(() => { console.log('finished, total price: ' + totalVanPrice)}, 500)
-    setTimeout(() => { console.log('finished, total weight: ' + totalVanWeight)}, 500)
+    setTimeout(() => {
+        fetch(getLink('van') + '/' + id)
+        .then((reponse) => reponse.json())
+        .then((object) => {
+            console.log('van:' + JSON.stringify(object))
+            setTimeout(() => { validateVanCapacity(object)}, 500)
+        })
+    }, 500)
 }
 
+function validateVanCapacity(object){
+    document.getElementById('van-view-details-total-price').innerHTML = totalVanPrice
+    document.getElementById('van-view-details-total-weight').innerHTML = totalVanWeight
+    if(totalVanWeight>object.capacity){
+        document.getElementById('van-view-details-total-weight').style.color = "red"
+        document.getElementById('van-view-details-weight-validation').innerHTML = "Weight is above maximum capacity of " + object.capacity + " g"
+        document.getElementById('van-view-details-weight-validation').style.color = "red"
+    } else {
+        document.getElementById('van-view-details-total-weight').style.color = "green"
+        document.getElementById('van-view-details-weight-validation').innerHTML = "Weight is below maximum capacity of " + object.capacity + " g"
+        document.getElementById('van-view-details-weight-validation').style.color = "green"
+    }
+}
 function printVanPrice(destination){
     document.getElementById(destination).innerHTML = totalVanPrice
 }
@@ -71,7 +81,6 @@ function getDeliveryTotalPrice2(id){
             testPrice += tempPrice
         })
         totalPrice = testPrice
-        console.log('price: ' + testPrice)
     })  
 }
 
@@ -86,6 +95,5 @@ function getDeliveryTotalWeight2(id){
             testWeight += tempWeight
         })
         totalWeight = testWeight
-        console.log('weight: ' + testWeight)
     })  
 }
